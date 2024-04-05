@@ -1,0 +1,133 @@
+.order-summary-heading {
+  color: #ffff;
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+}
+.order-summary-container {
+  /* border: 1px solid red; */
+}
+.order-summary-images {
+  width: 100%;
+  margin-top: 25px;
+}
+.order-summary-counter-main {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.order-summary-counter-heading {
+  color: #9fa0a6;
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+}
+.order-summary-counter-price {
+  color: #fff6f6;
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+.order-summary-counter-button-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.order-summary-counter-button-main > button {
+  background-color: #e2e8f0;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.order-summary-counter-button-main > p {
+  color: #fff6f6;
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0px 10px;
+}
+.order-summary-dicount-title {
+  color: #9fa0a6;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+.order-summary-dicount-input-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.order-summary-dicount-input-main > div {
+  border: 1px solid #3d3e4a;
+  background-color: #192338;
+  height: 50px;
+  width: 50%;
+  border-radius: 5px;
+  padding: 0px 10px;
+}
+.order-summary-dicount-input-main > div > input {
+  height: 100%;
+  width: 100%;
+  color: #fff;
+}
+.order-summary-dicount-input-main > button {
+  background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
+  height: 50px;
+  width: 125px;
+  border-radius: 100px;
+  padding: 1px;
+  cursor: pointer;
+}
+.order-summary-dicount-input-main > button > div {
+  border-radius: 100px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #111827;
+}
+.order-summary-dicount-input-main > button > div > p {
+  background: -webkit-linear-gradient(#7d3aeb, #9e2fb2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+}
+.order-summary-price-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.order-summary-price-title {
+  color: #9fa0a6;
+  font-family: "Inter";
+  font-size: 18px;
+  font-weight: 500;
+}
+.order-summary-price-value {
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+}
+.order-summary-price-total {
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}

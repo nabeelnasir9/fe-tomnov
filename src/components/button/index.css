@@ -1,0 +1,13 @@
+.button {
+  background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
+  height: 59px;
+  border-radius: 100px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-family: "Exo 2";
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 30px;
+  cursor: pointer;
+}

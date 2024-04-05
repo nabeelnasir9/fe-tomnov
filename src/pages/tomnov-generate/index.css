@@ -1,0 +1,293 @@
+.tomnov-generate-container {
+  margin-top: 120px;
+  margin-bottom: 50px;
+}
+.tomnov-generate-left-heading {
+  color: #fff;
+  font-family: "Inter";
+  font-size: 28px;
+  font-weight: 500;
+}
+.tomnov-generate-line {
+  background-color: #3d3e4a;
+  height: 1px;
+  display: flex;
+  flex: 1;
+  margin-top: 15px;
+}
+.tomnov-generate-left-title {
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 20px;
+}
+.tomnov-generate-radio-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.tomnov-generate-radio-main > div {
+  color: #9fa0a6;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+.tomnov-generate-radio-main > div > div {
+  background-color: #d9d9d91a;
+  width: 18px;
+  height: 18px;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+.tomnov-generate-radio {
+  background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+}
+.tomnov-generate-checkbox-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.tomnov-generate-checkbox-main > div {
+  color: #9fa0a6;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+.tomnov-generate-checkbox-main > div > div {
+  background-color: #d9d9d91a;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+.tomnov-generate-upload-button {
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  background-color: #192338;
+  width: 100%;
+  height: 179px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+.tomnov-generate-upload-button > p {
+  font-family: "Inter";
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+  margin-top: 10px;
+}
+.tomnov-generate-right-section {
+  background-color: #151e30;
+  border-radius: 30px;
+  padding: 20px;
+}
+.tomnov-generate-right-section-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom-width: 1px;
+  border-bottom-color: #3d3e4a;
+  border-bottom-style: solid;
+  margin-bottom: 20px;
+  padding: 15px 0px;
+}
+.tomnov-generate-right-section-header > h1 {
+  font-family: "Inter";
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+}
+.tomnov-generate-right-section-header > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tomnov-generate-button {
+  background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
+  height: 50px;
+  border-radius: 100px;
+  padding: 1px;
+  width: 171px;
+  cursor: pointer;
+}
+.tomnov-generate-button > div {
+  background-color: #151e30;
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+}
+.tomnov-generate-button > div:hover {
+  background-color: transparent;
+}
+.tomnov-generate-print-button {
+  background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
+  height: 50px;
+  width: 226px;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 15px;
+}
+.tomnov-generate-right-section > img {
+  width: 100%;
+}
+.tomnov-generate-image-mian {
+  width: 100%;
+  cursor: pointer;
+}
+.tomnov-generate-image-mian > img {
+  width: 100%;
+  height: 100%;
+}
+.tomnov-generate-image-container {
+  max-height: 70vh;
+  overflow: auto;
+}
+
+@media only screen and (max-width: 1400px) {
+  .tomnov-generate-button {
+    height: 45px;
+    width: 150px;
+  }
+  .tomnov-generate-button > div {
+    font-size: 16px;
+  }
+  .tomnov-generate-print-button {
+    height: 45px;
+    width: 200px;
+    font-size: 18px;
+  }
+}
+@media only screen and (max-width: 1300px) {
+  .tomnov-generate-button {
+    height: 40px;
+    width: 120px;
+  }
+  .tomnov-generate-button > div {
+    font-size: 14px;
+  }
+  .tomnov-generate-print-button {
+    height: 40px;
+    width: 170px;
+    font-size: 14px;
+  }
+  .tomnov-generate-left-heading {
+    font-size: 22px;
+  }
+  .tomnov-generate-right-section-header > h1 {
+    font-size: 25px;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .tomnov-generate-button {
+    height: 30px;
+    width: 100px;
+  }
+  .tomnov-generate-button > div {
+    font-size: 12px;
+  }
+  .tomnov-generate-print-button {
+    height: 30px;
+    width: 130px;
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .tomnov-generate-button {
+    height: 30px;
+    width: 70px;
+  }
+  .tomnov-generate-button > div {
+    font-size: 9px;
+  }
+  .tomnov-generate-print-button {
+    height: 30px;
+    width: 100px;
+    font-size: 9px;
+  }
+  .tomnov-generate-right-section-header > h1 {
+    font-size: 16px;
+  }
+}
+
+.big-button {
+  background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
+  height: 59px;
+  border-radius: 100px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-family: "Exo 2";
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.big-button:disabled,
+.big-button[disabled] {
+  border: 1px solid #999999 !important;
+  background-color: #cccccc !important;
+  color: #666666 !important;
+}
+
+.progress-bar-main {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar-heading {
+  color: white;
+  padding-left: 30px;
+  padding-top: 40px;
+}

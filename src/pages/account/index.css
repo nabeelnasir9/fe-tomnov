@@ -1,0 +1,184 @@
+.step-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.step-done-title {
+  background: -webkit-linear-gradient(#7d3aeb, #9e2fb2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+}
+.step-line {
+  background-color: #3d3e4a;
+  height: 1px;
+  width: 25px;
+}
+.step-done-line {
+  background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
+  height: 1px;
+  width: 25px;
+}
+.step-title {
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+  color: #828282;
+}
+.step-done-circle {
+  background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
+  height: 20px;
+  width: 20px;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.account-lect-section {
+  /* border: 1px solid red; */
+}
+.account-left-heading {
+  color: #fff;
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.account-input-title {
+  color: #9fa0a6;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 15px;
+}
+.account-input-main {
+  border: 1px solid #3d3e4a;
+  background-color: #192338;
+  height: 59px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+  margin-top: 10px;
+}
+.account-input-main > input {
+  height: 100%;
+  width: 100%;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+  color: #5b5c67;
+  margin-right: 10px;
+}
+.account-login-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+.account-register-button {
+  height: 50px;
+  color: #9fa0a6;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.account-login-button {
+  background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
+  width: 150px;
+  height: 50px;
+  border-radius: 100px;
+  color: #f7fafc;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
+}
+.account-left-line {
+  background-color: #3d3e4a;
+  height: 1px;
+  display: flex;
+  flex: 1;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.account-left-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.account-left-footer-button {
+  height: 50px;
+  color: #4a5568;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.account-left-footer-gradient-button {
+  background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
+  width: 200px;
+  height: 50px;
+  border-radius: 100px;
+  color: #f7fafc;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 500px) {
+  .step-done-title {
+    font-size: 14px;
+  }
+  .step-title {
+    font-size: 14px;
+  }
+  .account-register-button {
+    height: 50px;
+    font-size: 12px;
+  }
+  .account-login-button {
+    width: 80px;
+    height: 35px;
+    font-size: 12px;
+  }
+  .account-left-footer-button {
+    height: 35px;
+    font-size: 12px;
+  }
+  .account-left-footer-gradient-button {
+    width: 130px;
+    height: 35px;
+    font-size: 12px;
+  }
+  .step-line {
+    width: 15px;
+  }
+  .step-done-line {
+    width: 15px;
+  }
+}

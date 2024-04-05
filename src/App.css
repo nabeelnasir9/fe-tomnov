@@ -1,0 +1,26 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  background-color: #111827;
+}
+button {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+input {
+  outline: none;
+  background: none;
+  border: none;
+}
+
+button {
+  all: unset;
+}
+
+button:focus {
+  outline: revert;
+}

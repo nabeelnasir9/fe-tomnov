@@ -1,0 +1,106 @@
+.benefits-container {
+  margin-top: 200px ;
+}
+.benefits-image-main {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.benefits-image-main > img {
+  max-width: 100%;
+}
+.benefits-title {
+  color: #9c59ff;
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 400;
+}
+.benefits-heading {
+  color: #fff;
+  font-family: "Inter";
+  font-size: 48px;
+  font-weight: 600;
+}
+.benefits-card-container {
+  margin-top: 50px;
+}
+.benefits-card-box {
+  background-image: linear-gradient(to bottom, #7d3aea4d, #9d2fb44d);
+  width: 135px;
+  height: 38px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter";
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+}
+.benefits-card {
+  background-color: #00000033;
+  border-radius: 18px;
+  padding: 20px;
+  margin-top: 15px;
+}
+.benefits-card > h1 {
+  color: #fff;
+  font-family: "Inter";
+  font-size: 30px;
+  font-weight: 700;
+}
+.benefits-card > p {
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+  margin-top: 15px;
+}
+@media only screen and (max-width: 1900px) {
+  .benefits-card > h1 {
+    font-size: 28px;
+  }
+  .benefits-card > p {
+    font-size: 18px;
+  }
+}
+@media only screen and (max-width: 1600px) {
+  .benefits-heading {
+    font-size: 40px;
+  }
+  .benefits-card > h1 {
+    font-size: 24px;
+  }
+  .benefits-card > p {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .benefits-heading {
+    font-size: 35px;
+  }
+
+}
+
+@media only screen and (max-width: 1200px) {
+  .benefits-heading {
+    font-size: 25px;
+  }
+}
+@media only screen and (max-width: 899px) {
+  .benefits-heading {
+    font-size: 35px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .benefits-heading {
+    font-size: 25px;
+  }
+  .benefits-card > h1 {
+    font-size: 16px;
+  }
+  .benefits-card > p {
+    font-size: 12px;
+  }
+}

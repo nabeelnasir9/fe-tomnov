@@ -1,0 +1,51 @@
+.payment-expiration-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.payment-expiration-sec-1 {
+  /* border: 1px solid red; */
+  width: 40%;
+  margin-right: 10px;
+}
+.payment-expiration-sec-1 > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.payment-expiration-sec-1 > div > p {
+  color: #4a5568;
+  margin: 0px 10px;
+}
+.payment-expiration-cvc-main {
+  /* border: 1px solid red; */
+  /* width: 50%; */
+}
+.cvc-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.cvc-main > button {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+@media only screen and (max-width: 600px) {
+  .payment-expiration-main {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .payment-expiration-sec-1 {
+    width: 100%;
+    margin-right: 0px;
+  }
+  .payment-expiration-cvc-main {
+ width: 100%;
+  }
+}

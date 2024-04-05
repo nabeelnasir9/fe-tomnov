@@ -1,0 +1,119 @@
+.login-container {
+  background-image: url("./../../assets/log-in.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-logo{
+  height: 30px;
+  margin-top: 30px;
+}
+#login-container-inner {
+  background-color: #19233833;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+}
+.login-section-1 {
+  width: 50%;
+  height: 580px;
+  border-radius: 10px 0px 0px 10px;
+}
+.login-section-2 {
+  width: 50%;
+  height: 550px;
+}
+.login-section-2 > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0px 10px 10px 0px;
+}
+.login-heading {
+  color: #fff;
+  font-family: "Oxygen";
+  font-weight: 700;
+  font-size: 36px;
+  margin-top: 25px;
+}
+.login-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 15px;
+  /* margin-bottom: 50px; */
+  flex-wrap: wrap;
+}
+.login-header > p {
+  color: #9fa0a6;
+  font-size: 16px;
+  font-family: "Oxygen";
+  font-weight: 400;
+}
+.login-header > button {
+  color: #fff;
+  font-size: 16px;
+  font-family: "Oxygen";
+  font-weight: 400;
+  text-decoration: underline;
+  margin-left: 5px;
+}
+.forgot-button {
+  font-family: "Oxygen";
+  font-size: 16px;
+  font-weight: 400;
+  color: #9fa0a6;
+  text-align: center;
+  width: 100%;
+  text-decoration: underline;
+  margin-top: 20px;
+}
+.form-contianer {
+  margin: 0px 20px;
+}
+
+@media only screen and (max-width: 700px) {
+  #login-container-inner {
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 15px;
+  }
+  .login-section-1 {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  .login-section-2 {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .form-contianer {
+    margin: 0px;
+  }
+  .login-section-2 > img {
+    border-radius: 10px;
+    max-height: 50vh;
+  }
+  .forgot-button {
+    font-family: "Oxygen";
+    font-size: 16px;
+    font-weight: 400;
+    color: #9fa0a6;
+    text-align: center;
+    width: 100%;
+    text-decoration: underline;
+    margin-top: 20px;
+  }
+ 
+}
