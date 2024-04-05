@@ -8,11 +8,17 @@ import "./index.css";
 
 const UpscaleCard = () => {
   const navigate = useNavigate();
-  const { generatedImages2, upscaleImage, setUpscaleImage } =
-    useContext(AuthContext);
+  const {
+    generatedImages2,
+    upscaleImage,
+    setGeneratedImages2,
+    setEditImage,
+    setUpscaleImage,
+    selectedIndex,
+    setSelectedIndex,
+  } = useContext(AuthContext);
   const location = useLocation();
   const [progress, setProgress] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const selectedImage =
     generatedImages2 &&
@@ -39,10 +45,6 @@ const UpscaleCard = () => {
       console.log(error);
     }
   };
-
-  // const clearUpscale = () => {
-  //   setUpscaleImage("");
-  // };
 
   useEffect(() => {
     setSelectedIndex(location.state.index);
@@ -100,7 +102,11 @@ const UpscaleCard = () => {
                 <button
                   className="ind-card-rev-confirm-button"
                   disabled={progress}
-                  onClick={() => navigate("/individual-card-review")}
+                  onClick={() => {
+                    setGeneratedImages2([]);
+                    setEditImage("");
+                    navigate("/individual-card-review");
+                  }}
                 >
                   Confirm
                 </button>

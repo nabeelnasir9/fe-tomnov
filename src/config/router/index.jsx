@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   LandingPage,
@@ -12,6 +11,7 @@ import {
   Payment,
   ContactUs,
   OrderHistory,
+  FinalScreen,
 } from "../../pages";
 import ProtectedRoute from "./ProtectedRoutes";
 const RouterNavigation = () => {
@@ -23,6 +23,7 @@ const RouterNavigation = () => {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/upscale" element={<UpscaleCard />} />
         <Route path="/tomnov-generate" element={<TomnovGenerate />} />
+        <Route path="/final" element={<FinalScreen />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/account" element={<Account />} />

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { Navbar } from "../../components";
 import Grid from "@mui/material/Grid";
@@ -76,7 +76,13 @@ const IndividualCardReview = () => {
                 </div>
                 <div className="ind-card-rev-image-main">
                   {editImage && editImage.uri ? (
-                    <img src={editImage.uri} alt="check" />
+                    <button onClick={() => navigate("/final")}>
+                      <img
+                        style={{ width: "200px", height: "200px" }}
+                        src={editImage.uri}
+                        alt="check"
+                      />
+                    </button>
                   ) : (
                     <img src={upscaleImage.uri} alt="check" />
                   )}

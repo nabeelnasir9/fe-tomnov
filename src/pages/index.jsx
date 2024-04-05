@@ -9,9 +9,11 @@ import Payment from "./payment";
 import ContactUs from "./contact-us";
 import OrderHistory from "./order-history";
 import UpscaleCard from "./upscale-individual-card";
+import FinalScreen from "./order-screen";
 export {
   LandingPage,
   Login,
+  FinalScreen,
   SignUp,
   UpscaleCard,
   TomnovGenerate,
