@@ -78,7 +78,7 @@ const IndividualCardReview = () => {
                   {editImage && editImage.uri ? (
                     <button onClick={() => navigate("/final")}>
                       <img
-                        style={{ width: "200px", height: "200px" }}
+                        style={{ width: "350px", height: "500px" }}
                         src={editImage.uri}
                         alt="check"
                       />

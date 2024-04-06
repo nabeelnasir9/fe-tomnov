@@ -10,6 +10,7 @@ import ContactUs from "./contact-us";
 import OrderHistory from "./order-history";
 import UpscaleCard from "./upscale-individual-card";
 import FinalScreen from "./order-screen";
+import Test from "./test";
 export {
   LandingPage,
   Login,
@@ -22,5 +23,6 @@ export {
   Shipping,
   Payment,
   ContactUs,
+  Test,
   OrderHistory,
 };

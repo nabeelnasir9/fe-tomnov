@@ -12,6 +12,7 @@ import {
   ContactUs,
   OrderHistory,
   FinalScreen,
+  Test,
 } from "../../pages";
 import ProtectedRoute from "./ProtectedRoutes";
 const RouterNavigation = () => {
@@ -24,6 +25,7 @@ const RouterNavigation = () => {
         <Route path="/upscale" element={<UpscaleCard />} />
         <Route path="/tomnov-generate" element={<TomnovGenerate />} />
         <Route path="/final" element={<FinalScreen />} />
+        <Route path="/test" element={<Test />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/account" element={<Account />} />
