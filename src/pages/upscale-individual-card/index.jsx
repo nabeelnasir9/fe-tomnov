@@ -33,7 +33,7 @@ const UpscaleCard = () => {
       const response = await axios.post(
         "http://localhost:3001/api/generate/upscale",
         {
-          messageId: generatedImages2[selectedIndex].messageId,
+          messageId: generatedImages2[selectedIndex].task_id,
           upscale: type,
         },
       );
@@ -71,13 +71,13 @@ const UpscaleCard = () => {
                   <div className="ind-card-up-reg-button-main">
                     <button
                       className="ind-card-up-reg-button"
-                      onClick={() => upscaleReq("U1")}
+                      onClick={() => upscaleReq("1")}
                     >
                       <div>Upscale 1st</div>
                     </button>
                     <button
                       className="ind-card-up-reg-button"
-                      onClick={() => upscaleReq("U2")}
+                      onClick={() => upscaleReq("2")}
                     >
                       <div>Upscale 2nd</div>
                     </button>
@@ -85,13 +85,13 @@ const UpscaleCard = () => {
                   <div className="ind-card-up-reg-button-main">
                     <button
                       className="ind-card-up-reg-button"
-                      onClick={() => upscaleReq("U3")}
+                      onClick={() => upscaleReq("3")}
                     >
                       <div>Upscale 3rd</div>
                     </button>
                     <button
                       className="ind-card-up-reg-button"
-                      onClick={() => upscaleReq("U4")}
+                      onClick={() => upscaleReq("4")}
                     >
                       <div>Upscale 4th</div>
                     </button>

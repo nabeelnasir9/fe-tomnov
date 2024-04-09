@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import { useContext, useLayoutEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../../components";
 import { AuthContext } from "../../config/AuthContext";

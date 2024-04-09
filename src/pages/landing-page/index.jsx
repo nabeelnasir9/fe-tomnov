@@ -1,11 +1,10 @@
-import React from "react";
 import {
   Navbar,
   FeaturedPrompts,
   Footer,
   HowItWworks,
   Benefits,
-  WhyChooseUs
+  WhyChooseUs,
 } from "../../components";
 import "./index.css";
 import FacebookIcon from "./../../assets/facebook-2.svg";
@@ -52,14 +51,14 @@ const LandingPage = () => {
                     your own projects. Or, use our free prompt generator to
                     create your own prompts from mages.
                   </p>
-                  
                 </div>
                 <div>
                   <div className="prompt-box">
                     <p>
                       Need{" "}
                       <span style={{ fontWeight: 600 }}>Prompt Ideas?</span>
-                      <br /> <br /> Try Our New Free Text to Image Tarot Cards Art Generator
+                      <br /> <br /> Try Our New Free Text to Image Tarot Cards
+                      Art Generator
                     </p>
                   </div>
                   <div className="prompt-generate-button-main">

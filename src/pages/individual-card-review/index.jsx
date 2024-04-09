@@ -22,11 +22,30 @@ const IndividualCardReview = () => {
         "http://localhost:3001/api/generate/edit",
         {
           imgUrl: upscaleImage.uri,
-          prompt: input,
+          prompt: `https://i.ibb.co/3TR9Vxj/images-1.jpg ${input} .Subject is facing the camera + fullshot + photorealistic details + tarot card. --ar 1:2 --style raw`,
         },
       );
       setEditImage(response.data);
       console.log("Response", response);
+      setProgress(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const faceSwap = async () => {
+    setProgress(true);
+    const source = "https://i.ibb.co/2FwZVtw/pexels-engin-akyurt-1642228.jpg";
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/generate/faceswap",
+        {
+          target: editImage.uri,
+          source: source,
+        },
+      );
+      setEditImage({ uri: response.data.uri });
+
+      console.log("Face swap response", response);
       setProgress(false);
     } catch (error) {
       console.log(error);
@@ -56,14 +75,26 @@ const IndividualCardReview = () => {
               <div className="ind-card-rev-reg-button-main">
                 <button
                   className="ind-card-rev-reg-button"
-                  onClick={() => navigate("/tomnov-generate")}
+                  onClick={() => fetchImage()}
                 >
-                  <div>Regenerate</div>
+                  <div>Generate</div>
                 </button>
+
+                {/* {editImage && editImage.uri ? ( */}
                 <button
                   className="ind-card-rev-confirm-button"
                   disabled={progress}
-                  onClick={() => fetchImage()}
+                  onClick={() => faceSwap()}
+                >
+                  faceswap
+                </button>
+                {/* ) : ( */}
+                {/*   <> </> */}
+                {/* )} */}
+                <button
+                  className="ind-card-rev-confirm-button"
+                  disabled={progress}
+                  onClick={() => navigate("/final")}
                 >
                   Confirm
                 </button>
@@ -76,18 +107,13 @@ const IndividualCardReview = () => {
                 </div>
                 <div className="ind-card-rev-image-main">
                   {editImage && editImage.uri ? (
-                    <button onClick={() => navigate("/final")}>
-                      <img
-                        style={{ width: "350px", height: "500px" }}
-                        src={editImage.uri}
-                        alt="check"
-                      />
-                    </button>
+                    <img src={editImage.uri} alt="" />
                   ) : (
-                    <img src={upscaleImage.uri} alt="check" />
+                    <img src={upscaleImage.uri} alt="" />
                   )}
                 </div>
               </div>
+              <Grid item xs={12} sm={12} md={7} lg={7} xl={7}></Grid>
             </Grid>
           </Grid>
         </Grid>

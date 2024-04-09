@@ -56,7 +56,7 @@ const TomnovGenerate = () => {
       const response = await axios.post(
         "http://localhost:3001/api/generate/create2",
         {
-          prompt: `https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-U5UBUdG_DJh8e6iQotyxocNlAhYxMC34xoSQ2IazDWGTJNVs Subject is a young ${ethnicityString} ${selectedGender} on island carrying abag on a stick and skipping carelessly.subjectis facing the camera. fullshot.photorealistic details.tarot card. --ar 1:2 --style raw`,
+          prompt: `https://i.ibb.co/3TR9Vxj/images-1.jpg Subject is a young ${ethnicityString} ${selectedGender} on island carrying abag on a stick and skipping carelessly.subjectis facing the camera. fullshot.photorealistic details.tarot card. --ar 1:2 --style raw`,
         },
       );
       setGeneratedImages2(response.data);

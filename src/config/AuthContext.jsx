@@ -12,11 +12,14 @@ export const AuthProvider = ({ children }) => {
 
   useLayoutEffect(() => {
     setMainImageStack([generatedImages2[selectedIndex]]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedIndex]);
 
   useLayoutEffect(() => {
-    setMainUpscaleImageStack([editImage]);
-  }, []);
+    if (editImage != "") {
+      setMainUpscaleImageStack([editImage]);
+    }
+  }, [editImage]);
 
   const value = {
     selectedIndex,
