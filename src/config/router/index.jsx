@@ -9,10 +9,12 @@ import {
   Account,
   Shipping,
   Payment,
+  Signup2,
   ContactUs,
   OrderHistory,
   FinalScreen,
   Test,
+  Login2,
 } from "../../pages";
 import ProtectedRoute from "./ProtectedRoutes";
 const RouterNavigation = () => {
@@ -26,6 +28,8 @@ const RouterNavigation = () => {
         <Route path="/tomnov-generate" element={<TomnovGenerate />} />
         <Route path="/final" element={<FinalScreen />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/login2" element={<Login2 />} />
+        <Route path="/signup2" element={<Signup2 />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/account" element={<Account />} />

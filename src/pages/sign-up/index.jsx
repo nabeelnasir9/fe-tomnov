@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Input, Button } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { FaCheck } from "react-icons/fa6";
@@ -12,9 +12,7 @@ import DialogContent from "@mui/material/DialogContent";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { IoMdClose } from "react-icons/io";
-import { MdEdit } from "react-icons/md";
 import OtpInput from "react-otp-input";
-import { GoDotFill } from "react-icons/go";
 import Logo from "./../../assets/logo.svg";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -55,7 +53,6 @@ const SignUp = () => {
           password,
         }),
       });
-      console.log("object");
       const data = await response.json();
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong");
@@ -64,8 +61,6 @@ const SignUp = () => {
       console.log("OTP:", data.otp);
       console.log("Opening OTP modal...");
       setOpen(true);
-
-      // setOpen(true);
     } catch (error) {
       alert(error.message);
       return;
@@ -94,7 +89,7 @@ const SignUp = () => {
         throw new Error(data.message || "OTP verification failed");
       }
       alert("OTP verified successfully!");
-      navigate("/login");
+      navigate("/log-in");
     } catch (error) {
       alert(error.message);
     }

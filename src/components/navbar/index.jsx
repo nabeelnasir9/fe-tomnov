@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Logo from "./../../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
@@ -11,6 +11,7 @@ import {
   Button as MuiButton,
 } from "@mui/material";
 
+// eslint-disable-next-line react/prop-types
 const Navbar = ({ margin }) => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
@@ -38,7 +39,6 @@ const Navbar = ({ margin }) => {
     setInitials("");
     setDialogOpen(false);
     navigate("/");
-
   };
 
   return (
@@ -67,7 +67,12 @@ const Navbar = ({ margin }) => {
           <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
             {loggedIn ? (
               <div className="navbar-right-section">
-                <Avatar onClick={() => setDialogOpen(true)} style={{textTransform:'capitalize'}}>{initials}</Avatar>
+                <Avatar
+                  onClick={() => setDialogOpen(true)}
+                  style={{ textTransform: "capitalize" }}
+                >
+                  {initials}
+                </Avatar>
                 <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
                   <DialogActions>
                     <MuiButton onClick={handleLogout}>Logout</MuiButton>
