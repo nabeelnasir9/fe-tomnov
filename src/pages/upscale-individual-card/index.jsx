@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { Navbar } from "../../components";
 import { AuthContext } from "../../config/AuthContext";
 import axios from "axios";
@@ -45,6 +46,17 @@ const UpscaleCard = () => {
       console.log(error);
     }
   };
+  const addSelectedImage = async () => {
+    const url = "http://localhost:3001/api/auth/selected";
+    const email = localStorage.getItem("email");
+    const image = upscaleImage.uri;
+    try {
+      await axios.post(url, { email, image });
+      toast.success("Image added to account!");
+    } catch (error) {
+      console.error("Error adding selected image:", error.message);
+    }
+  };
 
   useEffect(() => {
     setSelectedIndex(location.state.index);
@@ -71,12 +83,14 @@ const UpscaleCard = () => {
                   <div className="ind-card-up-reg-button-main">
                     <button
                       className="ind-card-up-reg-button"
+                      disabled={progress}
                       onClick={() => upscaleReq("1")}
                     >
                       <div>Upscale 1st</div>
                     </button>
                     <button
                       className="ind-card-up-reg-button"
+                      disabled={progress}
                       onClick={() => upscaleReq("2")}
                     >
                       <div>Upscale 2nd</div>
@@ -85,12 +99,14 @@ const UpscaleCard = () => {
                   <div className="ind-card-up-reg-button-main">
                     <button
                       className="ind-card-up-reg-button"
+                      disabled={progress}
                       onClick={() => upscaleReq("3")}
                     >
                       <div>Upscale 3rd</div>
                     </button>
                     <button
                       className="ind-card-up-reg-button"
+                      disabled={progress}
                       onClick={() => upscaleReq("4")}
                     >
                       <div>Upscale 4th</div>
@@ -116,6 +132,17 @@ const UpscaleCard = () => {
               <div className="tomnov-generate-right-section">
                 <div className="tomnov-generate-right-section-header">
                   <h1>Upscaled</h1>
+                  {upscaleImage && upscaleImage.uri ? (
+                    <button
+                      className="ind-card-up-reg-button"
+                      disabled={progress}
+                      onClick={() => addSelectedImage()}
+                    >
+                      <div>Add to Cart</div>
+                    </button>
+                  ) : (
+                    <> </>
+                  )}
                 </div>
                 <div className="ind-card-rev-image-main">
                   {upscaleImage && upscaleImage.uri ? (

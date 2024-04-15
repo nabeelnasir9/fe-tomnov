@@ -14,6 +14,15 @@
   width: 171px;
   cursor: pointer;
 }
+.ind-card-up-reg-button:disabled {
+  background-image: linear-gradient(
+    to right,
+    #ccc,
+    #aaa
+  ); /* Change the background color to a lighter shade */
+  cursor: not-allowed;
+  color: #fff;
+}
 .ind-card-up-reg-button > div {
   background-color: #151e30;
   width: 100%;

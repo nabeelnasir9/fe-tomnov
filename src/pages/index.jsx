@@ -11,13 +11,13 @@ import ContactUs from "./contact-us";
 import Login2 from "./login2";
 import OrderHistory from "./order-history";
 import UpscaleCard from "./upscale-individual-card";
-import FinalScreen from "./order-screen";
+import OrderScreen from "./order-screen";
 import Test from "./test";
 export {
   LandingPage,
   Login2,
   Login,
-  FinalScreen,
+  OrderScreen,
   SignUp,
   UpscaleCard,
   Signup2,

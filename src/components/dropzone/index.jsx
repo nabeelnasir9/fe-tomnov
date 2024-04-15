@@ -3,7 +3,7 @@ import { useDropzone } from "react-dropzone";
 import { useEffect, useState, useContext } from "react";
 import "./index.css";
 import { AuthContext } from "../../config/AuthContext";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export default function Accept() {
   const { setsourceImg } = useContext(AuthContext);
@@ -103,7 +103,6 @@ export default function Accept() {
           )}
         </label>
         <aside className="thumb-container">{thumbs}</aside>
-        <Toaster />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import Accept from "../../components/dropzone/index";
 import axios from "axios";
 import { Navbar } from "../../components";
@@ -54,6 +55,17 @@ const IndividualCardReview = () => {
       console.log(error);
     }
   };
+  const addSelectedImage = async () => {
+    const url = "http://localhost:3001/api/auth/selected";
+    const email = localStorage.getItem("email");
+    const image = editImage.uri;
+    try {
+      await axios.post(url, { email, image });
+      toast.success("Image added to account!");
+    } catch (error) {
+      console.error("Error adding selected image:", error.message);
+    }
+  };
 
   return (
     <div className="tomnov-generate-container">
@@ -94,7 +106,7 @@ const IndividualCardReview = () => {
                 <button
                   className="ind-card-rev-reg-button"
                   disabled={progress}
-                  onClick={() => navigate("/final")}
+                  onClick={() => navigate("/order")}
                 >
                   <div>Confirm</div>
                 </button>
@@ -104,6 +116,12 @@ const IndividualCardReview = () => {
               <div className="tomnov-generate-right-section">
                 <div className="tomnov-generate-right-section-header">
                   <h1>Individual Card Review</h1>
+                  <button
+                    className="ind-card-up-reg-button"
+                    onClick={() => addSelectedImage()}
+                  >
+                    <div>Add to Cart</div>
+                  </button>
                 </div>
                 <div className="ind-card-rev-image-main">
                   {editImage && editImage.uri ? (
