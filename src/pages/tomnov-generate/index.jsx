@@ -5,7 +5,6 @@ import { FaCheck } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../../components";
 import { AuthContext } from "../../config/AuthContext";
-import GenerateIcon from "./../../assets/generate.svg";
 import "./index.css";
 
 const TomnovGenerate = () => {
@@ -54,9 +53,10 @@ const TomnovGenerate = () => {
 
       const ethnicityString = selectedEthnicities.join(", ");
       const response = await axios.post(
-        "http://localhost:3001/api/generate/create2",
+        "http://localhost:3001/api/generate/multi",
         {
-          prompt: `https://i.ibb.co/3TR9Vxj/images-1.jpg Subject is a young ${ethnicityString} ${selectedGender} on island carrying abag on a stick and skipping carelessly.subjectis facing the camera. fullshot.photorealistic details.tarot card. --ar 1:2 --style raw`,
+          ethnicity: ethnicityString,
+          gender: selectedGender,
         },
       );
       setGeneratedImages2(response.data);
@@ -105,18 +105,12 @@ const TomnovGenerate = () => {
                   );
                 })}
               </div>
-              <h4 className="tomnov-generate-left-title">Swap Images</h4>
-              <label className="tomnov-generate-upload-button">
-                <input type="file" hidden />
-                <img src={GenerateIcon} alt="icon" />
-                <p>Upload Target Image</p>
-              </label>
               <button
                 onClick={() => fetchData2()}
                 disabled={progress}
                 className="big-button"
               >
-                Generate 2 Cards
+                Generate Cards
               </button>
             </Grid>
             <Grid item xs={12} sm={12} md={7} lg={7} xl={7}>
@@ -124,9 +118,9 @@ const TomnovGenerate = () => {
                 <div className="tomnov-generate-right-section-header">
                   <h1>Results</h1>
                   <div>
-                    <button className="tomnov-generate-button">
-                      <div>Regenerate</div>
-                    </button>
+                    {/* <button className="tomnov-generate-button"> */}
+                    {/*   <div>Regenerate</div> */}
+                    {/* </button> */}
                     {/* <button */}
                     {/*   className="tomnov-generate-print-button" */}
                     {/*   onClick={() => navigate("/account")} */}

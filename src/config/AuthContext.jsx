@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [mainImageStack, setMainImageStack] = useState([]);
   const [mainUpscaleImageStack, setMainUpscaleImageStack] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [sourceImg, setsourceImg] = useState("");
   // const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   // const [fullName, setFullName] = useState(null);
   // const [userData, setUserData] = useState({});
@@ -84,6 +85,8 @@ export const AuthProvider = ({ children }) => {
     setUpscaleImage,
     generatedImages2,
     setGeneratedImages2,
+    sourceImg,
+    setsourceImg,
   };
 
   // console.log(mainUpscaleImageStack, "mainUpscaleImageStack");

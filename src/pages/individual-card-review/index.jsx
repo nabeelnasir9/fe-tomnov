@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import Accept from "../../components/dropzone/index";
 import axios from "axios";
 import { Navbar } from "../../components";
 import Grid from "@mui/material/Grid";
@@ -7,10 +8,13 @@ import "./index.css";
 import { AuthContext } from "../../config/AuthContext";
 
 const IndividualCardReview = () => {
-  const { upscaleImage, editImage, setEditImage } = useContext(AuthContext);
+  const { upscaleImage, editImage, setEditImage, sourceImg } =
+    useContext(AuthContext);
+
   const [input, setInput] = useState("");
   const [progress, setProgress] = useState(false);
   const navigate = useNavigate();
+
   const handleTextareaChange = (event) => {
     setInput(event.target.value);
   };
@@ -34,13 +38,12 @@ const IndividualCardReview = () => {
   };
   const faceSwap = async () => {
     setProgress(true);
-    const source = "https://i.ibb.co/2FwZVtw/pexels-engin-akyurt-1642228.jpg";
     try {
       const response = await axios.post(
         "http://localhost:3001/api/generate/faceswap",
         {
-          target: editImage.uri,
-          source: source,
+          target: upscaleImage.uri,
+          source: sourceImg,
         },
       );
       setEditImage({ uri: response.data.uri });
@@ -72,31 +75,28 @@ const IndividualCardReview = () => {
                   onChange={handleTextareaChange}
                 ></textarea>
               </div>
-              <div className="ind-card-rev-reg-button-main">
-                <button
-                  className="ind-card-rev-reg-button"
-                  onClick={() => fetchImage()}
-                >
-                  <div>Generate</div>
-                </button>
 
-                {/* {editImage && editImage.uri ? ( */}
+              <Accept />
+              <div className="ind-card-rev-reg-button-main">
                 <button
                   className="ind-card-rev-confirm-button"
                   disabled={progress}
                   onClick={() => faceSwap()}
                 >
-                  faceswap
+                  Face Swap
                 </button>
-                {/* ) : ( */}
-                {/*   <> </> */}
-                {/* )} */}
                 <button
                   className="ind-card-rev-confirm-button"
+                  onClick={() => fetchImage()}
+                >
+                  <div>Generate</div>
+                </button>
+                <button
+                  className="ind-card-rev-reg-button"
                   disabled={progress}
                   onClick={() => navigate("/final")}
                 >
-                  Confirm
+                  <div>Confirm</div>
                 </button>
               </div>
             </Grid>

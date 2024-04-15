@@ -29,6 +29,7 @@
   background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
   height: 50px;
   border-radius: 100px;
+  margin-left: 15px;
   padding: 1px;
   width: 171px;
   cursor: pointer;
@@ -126,4 +127,3 @@
   cursor: pointer;
   margin-left: 15px;
 }
-
