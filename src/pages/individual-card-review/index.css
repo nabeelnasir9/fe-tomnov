@@ -34,6 +34,13 @@
   width: 171px;
   cursor: pointer;
 }
+
+.ind-card-rev-reg-button:disabled {
+  opacity: 0.5;
+  filter: grayscale(50%);
+  cursor: not-allowed;
+}
+
 .ind-card-rev-reg-button > div {
   background-color: #151e30;
   width: 100%;
@@ -70,6 +77,7 @@
   border: 1px solid #999999 !important;
   background-color: #cccccc !important;
   color: #666666 !important;
+  cursor: not-allowed;
 }
 
 .ind-card-rev-image-main {

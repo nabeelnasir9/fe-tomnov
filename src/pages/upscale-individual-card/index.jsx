@@ -44,6 +44,7 @@ const UpscaleCard = () => {
       setProgress(false);
     } catch (error) {
       console.log(error);
+      toast.error("Error Occurred.Reload and try again.");
     }
   };
   const addSelectedImage = async () => {
@@ -54,7 +55,8 @@ const UpscaleCard = () => {
       await axios.post(url, { email, image });
       toast.success("Image added to account!");
     } catch (error) {
-      console.error("Error adding selected image:", error.message);
+      console.log(error);
+      toast.error("Error Occurred.Reload and try again.");
     }
   };
 

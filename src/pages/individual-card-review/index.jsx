@@ -9,8 +9,14 @@ import "./index.css";
 import { AuthContext } from "../../config/AuthContext";
 
 const IndividualCardReview = () => {
-  const { upscaleImage, editImage, setEditImage, sourceImg } =
-    useContext(AuthContext);
+  const {
+    upscaleImage,
+    editImage,
+    setEditImage,
+    sourceImg,
+    selectedGender,
+    ethnicityString,
+  } = useContext(AuthContext);
 
   const [input, setInput] = useState("");
   const [progress, setProgress] = useState(false);
@@ -27,7 +33,7 @@ const IndividualCardReview = () => {
         "http://localhost:3001/api/generate/edit",
         {
           imgUrl: upscaleImage.uri,
-          prompt: `https://i.ibb.co/3TR9Vxj/images-1.jpg ${input} .Subject is facing the camera + fullshot + photorealistic details + tarot card. --ar 1:2 --style raw`,
+          prompt: `${input}.The subject is a ${selectedGender} of ${ethnicityString} ethnicity.fullshot + photorealistic details + tarot card. --ar 1:2 --style raw --iw 1`,
         },
       );
       setEditImage(response.data);
@@ -35,15 +41,18 @@ const IndividualCardReview = () => {
       setProgress(false);
     } catch (error) {
       console.log(error);
+      toast.error("Error occurred. Reload and try again.");
     }
   };
   const faceSwap = async () => {
     setProgress(true);
+    const image = editImage.uri || upscaleImage.uri;
+    console.log("Faceswap Image", image);
     try {
       const response = await axios.post(
         "http://localhost:3001/api/generate/faceswap",
         {
-          target: upscaleImage.uri,
+          target: image,
           source: sourceImg,
         },
       );
@@ -53,19 +62,44 @@ const IndividualCardReview = () => {
       setProgress(false);
     } catch (error) {
       console.log(error);
+      toast.error("Error Occurred.Reload and try again.");
     }
   };
   const addSelectedImage = async () => {
+    setProgress(true);
     const url = "http://localhost:3001/api/auth/selected";
     const email = localStorage.getItem("email");
-    const image = editImage.uri;
+    const image = editImage.uri || upscaleImage.uri;
+    console.log("addSelectedImage", image);
     try {
       await axios.post(url, { email, image });
       toast.success("Image added to account!");
+      setProgress(false);
     } catch (error) {
+      toast.error("Error Occurred.Reload and try again.");
       console.error("Error adding selected image:", error.message);
     }
   };
+  async function checkAndAddUrl() {
+    try {
+      const url = "http://localhost:3001/api/auth/check";
+      const email = localStorage.getItem("email");
+      const image = editImage.uri || upscaleImage.uri;
+      const response = await axios.post(url, { email: email, image: image });
+      if (response.status !== 200) {
+        throw new Error("Network response was not ok");
+      }
+      const data = response.data;
+      if (!data.exists) {
+        console.log("URL does not exist in selectedImages, adding...");
+      } else {
+        console.log("URL already exists in selectedImages");
+      }
+    } catch (error) {
+      toast.error("Error Occurred.Reload and try again.");
+      console.error("Error:", error);
+    }
+  }
 
   return (
     <div className="tomnov-generate-container">
@@ -99,6 +133,7 @@ const IndividualCardReview = () => {
                 </button>
                 <button
                   className="ind-card-rev-confirm-button"
+                  disabled={progress}
                   onClick={() => fetchImage()}
                 >
                   <div>Generate</div>
@@ -106,7 +141,10 @@ const IndividualCardReview = () => {
                 <button
                   className="ind-card-rev-reg-button"
                   disabled={progress}
-                  onClick={() => navigate("/order")}
+                  onClick={async () => {
+                    await checkAndAddUrl();
+                    navigate("/order");
+                  }}
                 >
                   <div>Confirm</div>
                 </button>
@@ -117,7 +155,8 @@ const IndividualCardReview = () => {
                 <div className="tomnov-generate-right-section-header">
                   <h1>Individual Card Review</h1>
                   <button
-                    className="ind-card-up-reg-button"
+                    className="ind-card-rev-reg-button"
+                    disabled={progress}
                     onClick={() => addSelectedImage()}
                   >
                     <div>Add to Cart</div>

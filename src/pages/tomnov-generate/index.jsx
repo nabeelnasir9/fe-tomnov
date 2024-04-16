@@ -1,4 +1,5 @@
 import Grid from "@mui/material/Grid";
+import toast from "react-hot-toast";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
@@ -8,26 +9,17 @@ import { AuthContext } from "../../config/AuthContext";
 import "./index.css";
 
 const TomnovGenerate = () => {
-  const { generatedImages2, setGeneratedImages2 } = useContext(AuthContext);
+  const {
+    generatedImages2,
+    setGeneratedImages2,
+    selectedGender,
+    setSelectedGender,
+    Ethnicity,
+    setEthnicity,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [selectedGender, setSelectedGender] = useState("Male");
   const GenderList = ["Male", "Female", "Other"];
   const [progress, setProgress] = useState(false);
-
-  const [Ethnicity, setEthnicity] = useState([
-    {
-      title: "Caucasians",
-      selected: false,
-    },
-    {
-      title: "Black",
-      selected: false,
-    },
-    {
-      title: "Latina/Hispanic",
-      selected: false,
-    },
-  ]);
   const handleEthnicitySelection = (index) => {
     const updatedEthnicity = Ethnicity.map((item, i) => {
       if (i === index) {
@@ -62,6 +54,7 @@ const TomnovGenerate = () => {
       setGeneratedImages2(response.data);
       setProgress(false);
     } catch (error) {
+      toast.error("Error occurred. Reload and try again.");
       console.error("Error fetching generated images:", error);
     }
   };
