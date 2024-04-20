@@ -9,6 +9,8 @@ import {
   IndividualCardReview,
   Account,
   Shipping,
+  Success,
+  Canceled,
   Payment,
   Signup2,
   ContactUs,
@@ -29,9 +31,10 @@ const RouterNavigation = () => {
           <Route path="/test" element={<Test />} />
           <Route path="/login2" element={<Login2 />} />
           <Route path="/signup2" element={<Signup2 />} />
-
           <Route element={<ProtectedRoute />}>
             <Route path="/account" element={<Account />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/cancel" element={<Canceled />} />
             <Route path="/upscale" element={<UpscaleCard />} />
             <Route path="/tomnov-generate" element={<TomnovGenerate />} />
             <Route path="/order" element={<OrderScreen />} />
@@ -39,11 +42,12 @@ const RouterNavigation = () => {
               path="/individual-card-review"
               element={<IndividualCardReview />}
             />
+            <Route path="/order-history" element={<OrderHistory />} />
           </Route>
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/order-history" element={<OrderHistory />} />
+          {/* <Route path="/order-history" element={<OrderHistory />} /> */}
         </Routes>
       </BrowserRouter>
       <Toaster

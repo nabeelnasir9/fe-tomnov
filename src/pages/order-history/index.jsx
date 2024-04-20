@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Navbar, Button } from "../../components";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Navbar } from "../../components";
 import Grid from "@mui/material/Grid";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import "./index.css";
@@ -13,8 +14,8 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useNavigate } from "react-router-dom";
 import { FaRegClock } from "react-icons/fa6";
-import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
+
 const columns = [
   { id: "ordeNo", label: "Order no", minWidth: 100 },
   { id: "items", label: "Items", minWidth: 200 },
@@ -24,8 +25,8 @@ const columns = [
     minWidth: 150,
   },
   {
-    id: "trackingID",
-    label: "Tracking ID",
+    id: "quantity",
+    label: "quantity",
     minWidth: 150,
   },
   {
@@ -44,241 +45,45 @@ const columns = [
     minWidth: 150,
   },
 ];
+
 const OrderHistory = () => {
   const navigate = useNavigate();
+  const [orders, setOrders] = useState([]);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [page, setPage] = React.useState(0);
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
+  useEffect(() => {
+    const fetchUserOrders = async () => {
+      try {
+        const email = localStorage.getItem("email");
+        const response = await axios.get(
+          "http://localhost:3001/api/auth/orders/",
+          {
+            params: {
+              userEmail: email,
+            },
+          },
+        );
+        if (response.status === 200) {
+          console.log("User orders:", response.data);
+          setOrders(response.data);
+        }
+      } catch (error) {
+        console.error("There was a problem fetching the user's orders:", error);
+        return null;
+      }
+    };
+    fetchUserOrders();
+  }, []);
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
-  const OrdersList = [
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "Completed",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "Completed",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "Completed",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "Completed",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "Completed",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-    {
-      orderNo: 2133,
-      itemsImage:
-        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W",
-      title: "Tarot card Artworks",
-      status: "In Progress",
-      trackingId: 2176413876,
-      deliveryDate: "23-07-2021",
-      price: 168.2,
-    },
-  ];
 
   return (
     <div className="tomnov-generate-container">
@@ -325,10 +130,7 @@ const OrderHistory = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody style={{ backgroundColor: "#111827" }}>
-                    {OrdersList.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    ).map((row, i) => {
+                    {orders.map((row, i) => {
                       return (
                         <TableRow
                           hover
@@ -338,43 +140,72 @@ const OrderHistory = () => {
                         >
                           <TableCell>
                             <p className="order-history-table-order-no">
-                              {row.orderNo}
+                              {i + 1}
                             </p>
                           </TableCell>
                           <TableCell>
-                            <div className="order-history-table-item-main">
-                              <img src={row.itemsImage} />
-                              <p>{row.title}</p>
-                            </div>
+                            {row.lineItems.length > 0 && (
+                              <div className="order-history-table-item-main">
+                                <img
+                                  src={
+                                    row.lineItems[0].price_data.product_data
+                                      .images[0]
+                                  }
+                                  alt="item"
+                                />
+                                <p>
+                                  {
+                                    row.lineItems[0].price_data.product_data
+                                      .name
+                                  }
+                                </p>
+                                {row.lineItems.length > 1 && (
+                                  <p>+ {row.lineItems.length - 1} more</p>
+                                )}
+                              </div>
+                            )}
                           </TableCell>
                           <TableCell>
                             <div className="order-history-table-status-main">
                               <FaRegClock color="#fff" />
-                              <p>{row.status}</p>
+                              <p>Completed</p>
                             </div>
                           </TableCell>
                           <TableCell>
-                            <div className="order-history-table-tracking-main">
-                              <p>{row.trackingId}</p>
-                              <FaArrowUpRightFromSquare color="#777777" />
-                            </div>
+                            {row.lineItems.length > 0 && (
+                              <div className="order-history-table-tracking-main">
+                                <p>
+                                  {row.lineItems.reduce(
+                                    (total, item) =>
+                                      total + parseInt(item.quantity),
+                                    0,
+                                  )}
+                                </p>
+                              </div>
+                            )}
                           </TableCell>
                           <TableCell>
                             <div className="order-history-table-date-main">
-                              <p className="order-history-table-date">
-                                {row.deliveryDate}
-                              </p>
                               <p className="order-history-table-date-text">
                                 (Expected)
                               </p>
                             </div>
                           </TableCell>
                           <TableCell>
-                            <div>
-                              <p className="order-history-table-price">
-                                ${row.price}
-                              </p>
-                            </div>
+                            {row.lineItems.length > 0 && (
+                              <div>
+                                <p className="order-history-table-price">
+                                  $
+                                  {(
+                                    row.lineItems.reduce(
+                                      (total, item) =>
+                                        total + item.price_data.unit_amount,
+                                      0,
+                                    ) / 100
+                                  ).toFixed(2)}
+                                </p>
+                              </div>
+                            )}
                           </TableCell>
                           <TableCell>
                             <button
@@ -394,7 +225,7 @@ const OrderHistory = () => {
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, 100]}
                 component="div"
-                count={OrdersList.length}
+                count={orders.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
@@ -413,4 +244,5 @@ const OrderHistory = () => {
     </div>
   );
 };
+
 export default OrderHistory;

@@ -1,11 +1,9 @@
 import Grid from "@mui/material/Grid";
-
 import axios from "axios";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../../components";
 import { AuthContext } from "../../config/AuthContext";
-
 import "./index.css";
 
 const OrderScreen = () => {
@@ -13,7 +11,7 @@ const OrderScreen = () => {
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
   const [selectedImages, setSelectedImages] = useState([]);
-
+  const email = localStorage.getItem("email");
   useEffect(() => {
     const addToCart = async () => {
       try {
@@ -28,11 +26,23 @@ const OrderScreen = () => {
     addToCart();
   }, []);
 
-  useEffect(() => {
-    console.log(selectedImages);
-  }, [selectedImages]);
+  const makePayment = async () => {
+    const body = {
+      images: selectedImages,
+      userEmail: email,
+    };
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const response = await fetch("http://localhost:3001/api/auth/payment", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(body),
+    });
+    const session = await response.json();
+    window.location.href = session.url;
+  };
 
-  /** @type [TODO: Add color difference when selected images.] */
   const handleImageSelect = (image) => {
     const isSelected = selectedImages.includes(image);
     if (isSelected) {
@@ -60,11 +70,11 @@ const OrderScreen = () => {
                       setUpscaleImage("");
                     }}
                   >
-                    Regenrate
+                    Regenerate
                   </button>
                   <button
                     className="tomnov-generate-print-button"
-                    onClick={() => navigate("/account")}
+                    onClick={makePayment}
                   >
                     Print and Order
                   </button>
