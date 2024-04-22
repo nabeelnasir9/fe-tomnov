@@ -29,7 +29,7 @@ const Signup2 = () => {
     setError(null);
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/api/user/signup`,
+        `https://be-tomnonv.onrender.com/api/user/signup`,
         {
           ...input,
         },

@@ -15,7 +15,7 @@ const OrderScreen = () => {
   useEffect(() => {
     const addToCart = async () => {
       try {
-        const url = "http://localhost:3001/api/auth/cart";
+        const url = "https://be-tomnonv.onrender.com/api/auth/cart";
         const email = localStorage.getItem("email");
         const response = await axios.post(url, { email });
         setImages(response.data.images);
@@ -34,7 +34,7 @@ const OrderScreen = () => {
     const headers = {
       "Content-Type": "application/json",
     };
-    const response = await fetch("http://localhost:3001/api/auth/payment", {
+    const response = await fetch("https://be-tomnonv.onrender.com/api/auth/payment", {
       method: "POST",
       headers: headers,
       body: JSON.stringify(body),

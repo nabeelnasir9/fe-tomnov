@@ -42,7 +42,7 @@ const SignUp = () => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:3001/api/auth/signup", {
+      const response = await fetch("https://be-tomnonv.onrender.com/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const SignUp = () => {
   const verifyOtp = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/auth/verify-otp",
+        "https://be-tomnonv.onrender.com/api/auth/verify-otp",
         {
           method: "POST",
           headers: {

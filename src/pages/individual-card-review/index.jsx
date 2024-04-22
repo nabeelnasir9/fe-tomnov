@@ -30,7 +30,7 @@ const IndividualCardReview = () => {
     setProgress(true);
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/generate/edit",
+        "https://be-tomnonv.onrender.com/api/generate/edit",
         {
           imgUrl: upscaleImage.uri,
           prompt: `${input}.The subject is a ${selectedGender} of ${ethnicityString} ethnicity.fullshot + photorealistic details + tarot card. --ar 1:2 --style raw --iw 1`,
@@ -50,7 +50,7 @@ const IndividualCardReview = () => {
     console.log("Faceswap Image", image);
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/generate/faceswap",
+        "https://be-tomnonv.onrender.com/api/generate/faceswap",
         {
           target: image,
           source: sourceImg,
@@ -67,7 +67,7 @@ const IndividualCardReview = () => {
   };
   const addSelectedImage = async () => {
     setProgress(true);
-    const url = "http://localhost:3001/api/auth/selected";
+    const url = "https://be-tomnonv.onrender.com/api/auth/selected";
     const email = localStorage.getItem("email");
     const image = editImage.uri || upscaleImage.uri;
     console.log("addSelectedImage", image);
@@ -82,7 +82,7 @@ const IndividualCardReview = () => {
   };
   async function checkAndAddUrl() {
     try {
-      const url = "http://localhost:3001/api/auth/check";
+      const url = "https://be-tomnonv.onrender.com/api/auth/check";
       const email = localStorage.getItem("email");
       const image = editImage.uri || upscaleImage.uri;
       const response = await axios.post(url, { email: email, image: image });
