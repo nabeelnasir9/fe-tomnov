@@ -159,6 +159,9 @@
 .otp-verify-button-container{
   color: white !important;
 }
+
+
+
 @media only screen and (max-width: 1100px) {
   #signup-container-inner {
     flex-direction: column;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Logo from "./../../assets/logo.svg";
+import Logo from "./../../assets/synthseer.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
 import Grid from "@mui/material/Grid";
@@ -10,8 +10,6 @@ import {
   DialogActions,
   Button as MuiButton,
 } from "@mui/material";
-import { FaBagShopping } from "react-icons/fa6";
-
 
 // eslint-disable-next-line react/prop-types
 const Navbar = ({ margin }) => {
@@ -69,25 +67,47 @@ const Navbar = ({ margin }) => {
           <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
             {loggedIn ? (
               <div className="navbar-right-section">
-                <div style={{marginRight:'20px'}}>
-                  <Link to="/order">
-                 <FaBagShopping color="#9034CA" size={25} />
-                 </Link>
-
+                <div style={{ marginRight: "20px" }}>
+                  <Link to="/order-history" style={{ textDecoration: "none" }}>
+                    <button className="track-order-button">
+                      Track Your Order
+                    </button>
+                  </Link>
                 </div>
 
                 <Avatar
                   onClick={() => setDialogOpen(true)}
-                  style={{ textTransform: "capitalize" }}
+                  style={{
+                    textTransform: "capitalize",
+                    backgroundImage:
+                      "linear-gradient(to right, #7d3aeb, #9e2fb2",
+                  }}
                 >
                   {initials}
                 </Avatar>
                 <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
-                  <DialogActions>
-                    <MuiButton onClick={handleLogout}>Logout</MuiButton>
+                  <DialogActions
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(to right, #7d3aeb, #9e2fb2",
+                      color: "white",
+                    }}
+                  >
+                    <Link to="/order-history" style={{textDecoration:'none'}}>
+                    <button className="track-order-button1">Track Your Order</button>
+                    </Link>
+                    <MuiButton
+                      onClick={handleLogout}
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(to right, #7d3aeb, #9e2fb2",
+                        color: "white",
+                      }}
+                    >
+                      Logout
+                    </MuiButton>
                   </DialogActions>
                 </Dialog>
-             
               </div>
             ) : (
               <div className="navbar-right-section">
