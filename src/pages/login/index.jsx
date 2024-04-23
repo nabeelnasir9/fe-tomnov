@@ -3,7 +3,7 @@ import "./index.css";
 import { Input, Button } from "../../components";
 import { useNavigate } from "react-router-dom";
 import SignInImage from "./../../assets/sign-up.jpg";
-import Logo from "./../../assets/logo.svg";
+import Logo from "./../../assets/synthseer.png";
 const Login = () => {
   const navigate = useNavigate();
   const [emailOrPhone, setEmailOrPhone] = useState("");

@@ -13,7 +13,7 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { IoMdClose } from "react-icons/io";
 import OtpInput from "react-otp-input";
-import Logo from "./../../assets/logo.svg";
+import Logo from "./../../assets/synthseer.png";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -33,7 +33,7 @@ const SignUp = () => {
   const [hidePasswordConfirm, setHidePasswordConfrim] = useState(true);
   const [checkbox, setCheckbox] = useState(false);
   const [otp, setOtp] = useState("");
-  const [seconds, setSeconds] = useState(360); // 6 minutes = 360 seconds
+  const [seconds, setSeconds] = useState(360);
   const [isActive, setIsActive] = useState(true);
 
   const handleSubmit = async () => {
@@ -42,7 +42,9 @@ const SignUp = () => {
       return;
     }
     try {
-      const response = await fetch("https://be-tomnonv.onrender.com/api/auth/signup", {
+      // const response = await fetch("http://localhost:3001/api/auth/signup", {
+        const response = await fetch("https://be-tomnonv.onrender.com/api/auth/signup", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -71,6 +73,8 @@ const SignUp = () => {
     try {
       const response = await fetch(
         "https://be-tomnonv.onrender.com/api/auth/verify-otp",
+        // "http://localhost:3001/api/auth/verify-otp",
+
         {
           method: "POST",
           headers: {
@@ -80,7 +84,7 @@ const SignUp = () => {
             email: email,
             otp: otp,
           }),
-        },
+        }
       );
 
       const data = await response.json();
@@ -119,7 +123,7 @@ const SignUp = () => {
     const seconds = time % 60;
     return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
       2,
-      "0",
+      "0"
     )}`;
   };
   return (
@@ -254,7 +258,7 @@ const SignUp = () => {
             </div>
           </Typography>
           <div className="otp-verify-button-container">
-            <Button onClick={verifyOtp}>Verify</Button>
+            <Button onClick={verifyOtp} className="otp-verify-button-container" >Verify</Button>
           </div>
         </DialogContent>
       </BootstrapDialog>
