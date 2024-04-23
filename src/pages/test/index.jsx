@@ -26,7 +26,7 @@ const Test = () => {
       try {
         const email = localStorage.getItem("email");
         const response = await axios.get(
-          "https://be-tomnonv.onrender.com/api/auth/orders/",
+          `${import.meta.env.VITE_SERVER_URL}/api/auth/orders/`,
           {
             params: {
               userEmail: email,

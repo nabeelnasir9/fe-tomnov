@@ -45,7 +45,7 @@ const TomnovGenerate = () => {
 
       const ethnicityString = selectedEthnicities.join(", ");
       const response = await axios.post(
-        "https://be-tomnonv.onrender.com/api/generate/multi",
+        `${import.meta.env.VITE_SERVER_URL}/api/generate/multi`,
         {
           ethnicity: ethnicityString,
           gender: selectedGender,

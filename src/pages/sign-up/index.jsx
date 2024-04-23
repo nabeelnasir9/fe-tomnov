@@ -43,18 +43,21 @@ const SignUp = () => {
     }
     try {
       // const response = await fetch("http://localhost:3001/api/auth/signup", {
-        const response = await fetch("https://be-tomnonv.onrender.com/api/auth/signup", {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/auth/signup`,
 
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fullName,
+            email,
+            password,
+          }),
         },
-        body: JSON.stringify({
-          fullName,
-          email,
-          password,
-        }),
-      });
+      );
       const data = await response.json();
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong");
@@ -72,7 +75,7 @@ const SignUp = () => {
   const verifyOtp = async () => {
     try {
       const response = await fetch(
-        "https://be-tomnonv.onrender.com/api/auth/verify-otp",
+        `${import.meta.env.VITE_SERVER_URL}/api/auth/verify-otp`,
         // "http://localhost:3001/api/auth/verify-otp",
 
         {
@@ -84,7 +87,7 @@ const SignUp = () => {
             email: email,
             otp: otp,
           }),
-        }
+        },
       );
 
       const data = await response.json();
@@ -123,7 +126,7 @@ const SignUp = () => {
     const seconds = time % 60;
     return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
       2,
-      "0"
+      "0",
     )}`;
   };
   return (
@@ -258,7 +261,7 @@ const SignUp = () => {
             </div>
           </Typography>
           <div className="otp-verify-button-container">
-            <Button onClick={verifyOtp} >Verify</Button>
+            <Button onClick={verifyOtp}>Verify</Button>
           </div>
         </DialogContent>
       </BootstrapDialog>

@@ -32,7 +32,7 @@ const UpscaleCard = () => {
     setProgress(true);
     try {
       const response = await axios.post(
-        "https://be-tomnonv.onrender.com/api/generate/upscale",
+        `${import.meta.env.VITE_SERVER_URL}/api/generate/upscale`,
         {
           messageId: generatedImages2[selectedIndex].task_id,
           upscale: type,
@@ -48,7 +48,7 @@ const UpscaleCard = () => {
     }
   };
   const addSelectedImage = async () => {
-    const url = "https://be-tomnonv.onrender.com/api/auth/selected";
+    const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/selected`;
     const email = localStorage.getItem("email");
     const image = upscaleImage.uri;
     try {

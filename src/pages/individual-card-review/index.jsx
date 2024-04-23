@@ -28,9 +28,10 @@ const IndividualCardReview = () => {
 
   const fetchImage = async () => {
     setProgress(true);
+    // const backend =
     try {
       const response = await axios.post(
-        "https://be-tomnonv.onrender.com/api/generate/edit",
+        `${import.meta.env.VITE_SERVER_URL}/api/generate/edit`,
         {
           imgUrl: upscaleImage.uri,
           prompt: `${input}.The subject is a ${selectedGender} of ${ethnicityString} ethnicity.fullshot + photorealistic details + tarot card. --ar 1:2 --style raw --iw 1`,
@@ -50,7 +51,7 @@ const IndividualCardReview = () => {
     console.log("Faceswap Image", image);
     try {
       const response = await axios.post(
-        "https://be-tomnonv.onrender.com/api/generate/faceswap",
+        `${import.meta.env.VITE_SERVER_URL}/api/generate/faceswap`,
         {
           target: image,
           source: sourceImg,
@@ -67,7 +68,7 @@ const IndividualCardReview = () => {
   };
   const addSelectedImage = async () => {
     setProgress(true);
-    const url = "https://be-tomnonv.onrender.com/api/auth/selected";
+    const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/selected`;
     const email = localStorage.getItem("email");
     const image = editImage.uri || upscaleImage.uri;
     console.log("addSelectedImage", image);
@@ -82,7 +83,7 @@ const IndividualCardReview = () => {
   };
   async function checkAndAddUrl() {
     try {
-      const url = "https://be-tomnonv.onrender.com/api/auth/check";
+      const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/check`;
       const email = localStorage.getItem("email");
       const image = editImage.uri || upscaleImage.uri;
       const response = await axios.post(url, { email: email, image: image });

@@ -12,16 +12,19 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("https://be-tomnonv.onrender.com/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: emailOrPhone,
+            password: password,
+          }),
         },
-        body: JSON.stringify({
-          email: emailOrPhone,
-          password: password,
-        }),
-      });
+      );
 
       const data = await response.json();
 

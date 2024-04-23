@@ -15,7 +15,8 @@ const OrderScreen = () => {
   useEffect(() => {
     const addToCart = async () => {
       try {
-        const url = "https://be-tomnonv.onrender.com/api/auth/cart";
+        const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/cart`;
+
         const email = localStorage.getItem("email");
         const response = await axios.post(url, { email });
         setImages(response.data.images);
@@ -34,11 +35,14 @@ const OrderScreen = () => {
     const headers = {
       "Content-Type": "application/json",
     };
-    const response = await fetch("https://be-tomnonv.onrender.com/api/auth/payment", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(body),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_SERVER_URL}/api/auth/payment`,
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      },
+    );
     const session = await response.json();
     window.location.href = session.url;
   };
