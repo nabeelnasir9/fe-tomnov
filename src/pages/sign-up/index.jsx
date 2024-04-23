@@ -258,7 +258,7 @@ const SignUp = () => {
             </div>
           </Typography>
           <div className="otp-verify-button-container">
-            <Button onClick={verifyOtp} className="otp-verify-button-container" >Verify</Button>
+            <Button onClick={verifyOtp} >Verify</Button>
           </div>
         </DialogContent>
       </BootstrapDialog>
