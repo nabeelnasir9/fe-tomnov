@@ -1,4 +1,5 @@
 import Grid from "@mui/material/Grid";
+import { RotatingLines } from "react-loader-spinner";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useContext, useState } from "react";
@@ -10,10 +11,11 @@ import "./index.css";
 
 const TomnovGenerate = () => {
   const {
-    generatedImages2,
     setGeneratedImages2,
     selectedGender,
     setSelectedGender,
+    mainImageStack,
+    setMainImageStack,
     Ethnicity,
     setEthnicity,
   } = useContext(AuthContext);
@@ -52,6 +54,7 @@ const TomnovGenerate = () => {
         },
       );
       setGeneratedImages2(response.data);
+      setMainImageStack(response.data);
       setProgress(false);
     } catch (error) {
       toast.error("Error occurred. Reload and try again.");
@@ -129,11 +132,21 @@ const TomnovGenerate = () => {
                         <h1 className="progress-bar-heading">
                           Generating please be patient...
                         </h1>
+                        <RotatingLines
+                          visible={true}
+                          height="60"
+                          width="60"
+                          strokeColor="purple"
+                          strokeWidth="5"
+                          animationDuration="0.75"
+                          ariaLabel="rotating-lines-loading"
+                          wrapperClass=""
+                        />
                       </div>
                     ) : (
                       <> </>
                     )}
-                    {generatedImages2?.map((v, i) => {
+                    {mainImageStack?.map((v, i) => {
                       return (
                         <Grid item key={i} xs={4} sm={3} md={4} lg={4} xl={3}>
                           <button
@@ -144,7 +157,7 @@ const TomnovGenerate = () => {
                               })
                             }
                           >
-                            <img src={v?.uri} alt="icon" />
+                            <img src={v?.uri} />
                           </button>
                         </Grid>
                       );

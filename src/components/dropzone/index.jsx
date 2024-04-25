@@ -5,7 +5,8 @@ import "./index.css";
 import { AuthContext } from "../../config/AuthContext";
 import toast from "react-hot-toast";
 
-export default function Accept() {
+// eslint-disable-next-line react/prop-types
+export default function Accept({ setProgress }) {
   const { setsourceImg } = useContext(AuthContext);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -34,6 +35,7 @@ export default function Accept() {
           ),
         );
         const apiKey = import.meta.env.VITE_BB_API_KEY;
+        setProgress(true);
         const imageFile = acceptedFiles[0];
         const formData = new FormData();
         formData.append("image", imageFile);
@@ -54,6 +56,7 @@ export default function Accept() {
           })
           .finally(() => {
             setUploading(false);
+            setProgress(false);
           });
       }
     },

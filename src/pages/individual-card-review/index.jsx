@@ -11,6 +11,7 @@ import { AuthContext } from "../../config/AuthContext";
 const IndividualCardReview = () => {
   const {
     upscaleImage,
+    upscaleImage2,
     editImage,
     setEditImage,
     sourceImg,
@@ -47,7 +48,7 @@ const IndividualCardReview = () => {
   };
   const faceSwap = async () => {
     setProgress(true);
-    const image = editImage.uri || upscaleImage.uri;
+    const image = editImage.uri || upscaleImage2.uri;
     console.log("Faceswap Image", image);
     try {
       const response = await axios.post(
@@ -70,7 +71,7 @@ const IndividualCardReview = () => {
     setProgress(true);
     const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/selected`;
     const email = localStorage.getItem("email");
-    const image = editImage.uri || upscaleImage.uri;
+    const image = editImage.uri || upscaleImage2.uri;
     console.log("addSelectedImage", image);
     try {
       await axios.post(url, { email, image });
@@ -85,7 +86,7 @@ const IndividualCardReview = () => {
     try {
       const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/check`;
       const email = localStorage.getItem("email");
-      const image = editImage.uri || upscaleImage.uri;
+      const image = editImage.uri || upscaleImage2.uri;
       const response = await axios.post(url, { email: email, image: image });
       if (response.status !== 200) {
         throw new Error("Network response was not ok");
@@ -122,8 +123,7 @@ const IndividualCardReview = () => {
                   onChange={handleTextareaChange}
                 ></textarea>
               </div>
-
-              <Accept />
+              <Accept setProgress={setProgress} />
               <div className="ind-card-rev-reg-button-main">
                 <button
                   className="ind-card-rev-confirm-button"
@@ -167,7 +167,7 @@ const IndividualCardReview = () => {
                   {editImage && editImage.uri ? (
                     <img src={editImage.uri} alt="" />
                   ) : (
-                    <img src={upscaleImage.uri} alt="" />
+                    <img src={upscaleImage2.uri} alt="" />
                   )}
                 </div>
               </div>

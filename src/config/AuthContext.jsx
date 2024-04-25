@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useLayoutEffect } from "react";
 export const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
@@ -24,8 +24,9 @@ export const AuthProvider = ({ children }) => {
   const ethnicityString = selectedEthnicities.join(", ");
   const [generatedImages2, setGeneratedImages2] = useState([]);
   const [upscaleImage, setUpscaleImage] = useState("");
+  const [upscaleImage2, setUpscaleImage2] = useState("");
   const [editImage, setEditImage] = useState("");
-  // const [mainImageStack, setMainImageStack] = useState([]);
+  const [mainImageStack, setMainImageStack] = useState([]);
   // const [mainUpscaleImageStack, setMainUpscaleImageStack] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [sourceImg, setsourceImg] = useState("");
@@ -78,9 +79,9 @@ export const AuthProvider = ({ children }) => {
   // };
 
   // useLayoutEffect(() => {
-  //   setMainImageStack([generatedImages2[selectedIndex]]);
+  //   setMainImageStack([generatedImages2]);
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [selectedIndex]);
+  // }, [generatedImages2]);
 
   // useLayoutEffect(() => {
   //   if (editImage != "") {
@@ -93,17 +94,19 @@ export const AuthProvider = ({ children }) => {
     // logout,
     // setCookie,
     upscaleImage,
+    upscaleImage2,
     selectedGender,
     setSelectedGender,
     // mainUpscaleImageStack,
     // setMainUpscaleImageStack,
     setSelectedIndex,
-    // mainImageStack,
-    // setMainImageStack,
+    mainImageStack,
+    setMainImageStack,
     editImage,
     // userData,
     setEditImage,
     setUpscaleImage,
+    setUpscaleImage2,
     generatedImages2,
     setGeneratedImages2,
     Ethnicity,
@@ -114,7 +117,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   // console.log(mainUpscaleImageStack, "mainUpscaleImageStack");
-  // console.log(mainImageStack, "mainImageStack");
+  console.log(mainImageStack, "mainImageStack");
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -280,7 +280,11 @@
 }
 
 .progress-bar-main {
+  padding-top: 40px;
+  padding-bottom: 30px;
   display: flex;
+  gap: 30px;
+  flex-direction: column;
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -288,6 +292,4 @@
 
 .progress-bar-heading {
   color: white;
-  padding-left: 30px;
-  padding-top: 40px;
 }

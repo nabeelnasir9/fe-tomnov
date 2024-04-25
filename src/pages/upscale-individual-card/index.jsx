@@ -15,6 +15,7 @@ const UpscaleCard = () => {
     setGeneratedImages2,
     setEditImage,
     setUpscaleImage,
+    setUpscaleImage2,
     selectedIndex,
     setSelectedIndex,
   } = useContext(AuthContext);
@@ -40,6 +41,7 @@ const UpscaleCard = () => {
       );
 
       setUpscaleImage(response.data);
+      setUpscaleImage2(response.data);
       console.log("Upscale image after update:", upscaleImage);
       setProgress(false);
     } catch (error) {
@@ -121,7 +123,8 @@ const UpscaleCard = () => {
                   className="ind-card-rev-confirm-button"
                   disabled={progress}
                   onClick={() => {
-                    setGeneratedImages2([]);
+                    // setGeneratedImages2([]);
+                    setUpscaleImage("");
                     setEditImage("");
                     navigate("/individual-card-review");
                   }}
