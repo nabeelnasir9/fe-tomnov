@@ -293,3 +293,9 @@
 .progress-bar-heading {
   color: white;
 }
+
+@media only screen and (max-width: 767px) {
+  .progress-bar-heading {
+    font-size: 20px;
+  }
+}

@@ -21,7 +21,7 @@ const TomnovGenerate = () => {
   } = useContext(AuthContext);
   const navigate = useNavigate();
   const GenderList = ["Male", "Female", "Other"];
-  const [progress, setProgress] = useState(false);
+  const [progress, setProgress] = useState(true);
   const handleEthnicitySelection = (index) => {
     const updatedEthnicity = Ethnicity.map((item, i) => {
       if (i === index) {
@@ -42,7 +42,7 @@ const TomnovGenerate = () => {
     setProgress(true);
     try {
       const selectedEthnicities = Ethnicity.filter((item) => item.selected).map(
-        (item) => item.title
+        (item) => item.title,
       );
 
       const ethnicityString = selectedEthnicities.join(", ");
@@ -51,7 +51,7 @@ const TomnovGenerate = () => {
         {
           ethnicity: ethnicityString,
           gender: selectedGender,
-        }
+        },
       );
       setGeneratedImages2(response.data);
       setMainImageStack(response.data);

@@ -15,9 +15,12 @@ export default function Accept({ setProgress }) {
     getRootProps,
     getInputProps,
     isDragActive,
+    open,
     isDragAccept,
     isDragReject,
   } = useDropzone({
+    noClick: true,
+    noKeyboard: true,
     maxFiles: 1,
     accept: {
       "image/*": [".jpeg", ".png"],
@@ -92,9 +95,9 @@ export default function Accept({ setProgress }) {
 
   return (
     <div className="container">
-      <div {...getRootProps({ className: "dropzone" })}>
+      <div {...getRootProps({ className: "dropzone" })} onClick={open}>
         <h4 className="tomnov-generate-left-title">Swap Images</h4>
-        <label className="tomnov-generate-upload-button">
+        <div className="tomnov-generate-upload-button">
           <input {...getInputProps()} />
           <img src={GenerateIcon} alt="icon" />
           {isDragAccept && <p>Supported</p>}
@@ -104,7 +107,7 @@ export default function Accept({ setProgress }) {
               <p>{uploadText}</p>
             </div>
           )}
-        </label>
+        </div>
         <aside className="thumb-container">{thumbs}</aside>
       </div>
     </div>

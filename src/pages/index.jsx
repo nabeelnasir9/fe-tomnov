@@ -6,9 +6,7 @@ import IndividualCardReview from "./individual-card-review";
 import Account from "./account";
 import Shipping from "./shipping";
 import Payment from "./payment";
-import Signup2 from "./signup2";
 import ContactUs from "./contact-us";
-import Login2 from "./login2";
 import OrderHistory from "./order-history";
 import Canceled from "./cancel";
 import Success from "./success";
@@ -17,12 +15,10 @@ import OrderScreen from "./order-screen";
 import Test from "./test";
 export {
   LandingPage,
-  Login2,
   Login,
   OrderScreen,
   SignUp,
   UpscaleCard,
-  Signup2,
   TomnovGenerate,
   IndividualCardReview,
   Account,
