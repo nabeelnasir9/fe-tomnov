@@ -21,7 +21,7 @@ const TomnovGenerate = () => {
   } = useContext(AuthContext);
   const navigate = useNavigate();
   const GenderList = ["Male", "Female", "Other"];
-  const [progress, setProgress] = useState(true);
+  const [progress, setProgress] = useState(false);
   const handleEthnicitySelection = (index) => {
     const updatedEthnicity = Ethnicity.map((item, i) => {
       if (i === index) {
