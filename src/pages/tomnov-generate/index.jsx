@@ -114,15 +114,12 @@ const TomnovGenerate = () => {
                 <div className="tomnov-generate-right-section-header">
                   <h1>Results</h1>
                   <div>
-                    {/* <button className="tomnov-generate-button"> */}
-                    {/*   <div>Regenerate</div> */}
-                    {/* </button> */}
-                    {/* <button */}
-                    {/*   className="tomnov-generate-print-button" */}
-                    {/*   onClick={() => navigate("/account")} */}
-                    {/* > */}
-                    {/*   Print and Order */}
-                    {/* </button> */}
+                    <button
+                      className="tomnov-generate-button"
+                      onClick={() => navigate("/order")}
+                    >
+                      <div>Cart</div>
+                    </button>
                   </div>
                 </div>
                 <div className="tomnov-generate-image-container">

@@ -29,7 +29,6 @@ const IndividualCardReview = () => {
 
   const fetchImage = async () => {
     setProgress(true);
-    // const backend =
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/api/generate/edit`,

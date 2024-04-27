@@ -12,7 +12,6 @@ const UpscaleCard = () => {
   const {
     generatedImages2,
     upscaleImage,
-    setGeneratedImages2,
     setEditImage,
     setUpscaleImage,
     setUpscaleImage2,
@@ -138,13 +137,22 @@ const UpscaleCard = () => {
                 <div className="tomnov-generate-right-section-header">
                   <h1>Upscaled</h1>
                   {upscaleImage && upscaleImage.uri ? (
-                    <button
-                      className="ind-card-up-reg-button"
-                      disabled={progress}
-                      onClick={() => addSelectedImage()}
-                    >
-                      <div>Add to Cart</div>
-                    </button>
+                    <div style={{ display: "flex", gap: "10px" }}>
+                      <button
+                        className="ind-card-up-reg-button"
+                        disabled={progress}
+                        onClick={() => addSelectedImage()}
+                      >
+                        <div>Add to Cart</div>
+                      </button>
+                      {/* <button */}
+                      {/*   className="ind-card-up-reg-button" */}
+                      {/*   disabled={progress} */}
+                      {/*   onClick={() => navigate("/order")} */}
+                      {/* > */}
+                      {/*   <div>Cart</div> */}
+                      {/* </button> */}
+                    </div>
                   ) : (
                     <> </>
                   )}

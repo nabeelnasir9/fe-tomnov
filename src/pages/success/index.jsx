@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import { RotatingLines } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import "./index.css";
 const Success = () => {
   const navigate = useNavigate();
   useEffect(() => {
@@ -10,23 +12,19 @@ const Success = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "40px",
-        width: "98vw",
-        height: "90vh",
-      }}
-    >
-      <h1
-        style={{
-          color: "white",
-        }}
-      >
-        Payment Succeeded
-      </h1>
+    <div className="main">
+      <h1 className="heading">Payment Succeeded</h1>
+      <p className="heading">Redirecting...</p>
+      <RotatingLines
+        visible={true}
+        height="60"
+        width="60"
+        strokeColor="purple"
+        strokeWidth="5"
+        animationDuration="0.75"
+        ariaLabel="rotating-lines-loading"
+        wrapperClass=""
+      />
     </div>
   );
 };
