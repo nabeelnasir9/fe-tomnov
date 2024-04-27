@@ -1,5 +1,6 @@
 .login-container {
   background-image: url("./../../assets/log-in.png");
+  font-family: "Inter";
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -38,7 +39,7 @@
 }
 .login-heading {
   color: #fff;
-  font-family: "Oxygen";
+  font-family: "Inter";
   font-weight: 700;
   font-size: 36px;
   margin-top: 25px;
@@ -54,19 +55,19 @@
 .login-header > p {
   color: #9fa0a6;
   font-size: 16px;
-  font-family: "Oxygen";
+  font-family: "Inter";
   font-weight: 400;
 }
 .login-header > button {
   color: #fff;
   font-size: 16px;
-  font-family: "Oxygen";
+  font-family: "Inter";
   font-weight: 400;
   text-decoration: underline;
   margin-left: 5px;
 }
 .forgot-button {
-  font-family: "Oxygen";
+  font-family: "Inter";
   font-size: 16px;
   font-weight: 400;
   color: #9fa0a6;
@@ -106,7 +107,7 @@
     max-height: 50vh;
   }
   .forgot-button {
-    font-family: "Oxygen";
+    font-family: "Inter";
     font-size: 16px;
     font-weight: 400;
     color: #9fa0a6;

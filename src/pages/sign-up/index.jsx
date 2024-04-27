@@ -241,7 +241,7 @@ const SignUp = () => {
           <Typography gutterBottom>
             <div className="otp-instructions">
               Please enter the 6-digit verification code we sent to your email:
-              <span className="email-highlight"> {email}</span>
+              <span className="email-highlight">{email}</span>
             </div>
           </Typography>
           <Typography gutterBottom component="div">
@@ -253,7 +253,16 @@ const SignUp = () => {
                 <input {...props} key={index} placeholder="0" />
               )}
               separator={<span>-</span>}
-              inputStyle="otp-input-style"
+              inputStyle={{
+                fontSize: "24px",
+                color: "white",
+                width: "40px",
+                height: "40px",
+                margin: "0 8px",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                borderRadius: "4px",
+              }}
               shouldAutoFocus
             />
             <div className="otp-timer">
