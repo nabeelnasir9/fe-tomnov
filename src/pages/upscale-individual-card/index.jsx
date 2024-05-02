@@ -38,10 +38,8 @@ const UpscaleCard = () => {
           upscale: type,
         },
       );
-
       setUpscaleImage(response.data);
       setUpscaleImage2(response.data);
-      console.log("Upscale image after update:", upscaleImage);
       setProgress(false);
     } catch (error) {
       console.log(error);
