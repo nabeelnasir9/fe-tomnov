@@ -31,7 +31,7 @@ const columns = [
   },
   {
     id: "deliveryDate",
-    label: "Delivery Date",
+    label: "Delivery Status",
     minWidth: 150,
   },
   {
@@ -187,7 +187,7 @@ const OrderHistory = () => {
                           <TableCell>
                             <div className="order-history-table-date-main">
                               <p className="order-history-table-date-text">
-                                (Expected)
+                                {row.delivery_status}
                               </p>
                             </div>
                           </TableCell>
