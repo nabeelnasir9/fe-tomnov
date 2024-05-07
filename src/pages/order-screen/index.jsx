@@ -96,7 +96,11 @@ const OrderScreen = () => {
                           }`}
                           onClick={() => handleImageSelect(v)}
                         >
-                          <img src={v} alt="icon" />
+                          <img
+                            src={v}
+                            alt="icon"
+                            onContextMenu={(e) => e.preventDefault()}
+                          />
                         </button>
                       </Grid>
                     );

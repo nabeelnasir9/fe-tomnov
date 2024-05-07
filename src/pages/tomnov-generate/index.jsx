@@ -154,7 +154,10 @@ const TomnovGenerate = () => {
                               })
                             }
                           >
-                            <img src={v?.uri} />
+                            <img
+                              src={v?.uri}
+                              onContextMenu={(e) => e.preventDefault()}
+                            />
                           </button>
                         </Grid>
                       );

@@ -157,9 +157,17 @@ const UpscaleCard = () => {
                 </div>
                 <div className="ind-card-rev-image-main">
                   {upscaleImage && upscaleImage.uri ? (
-                    <img src={upscaleImage.uri} alt="check" />
+                    <img
+                      src={upscaleImage.uri}
+                      alt="check"
+                      onContextMenu={(e) => e.preventDefault()}
+                    />
                   ) : (
-                    <img src={selectedImage} alt="check" />
+                    <img
+                      src={selectedImage}
+                      alt="check"
+                      onContextMenu={(e) => e.preventDefault()}
+                    />
                   )}
                 </div>
 

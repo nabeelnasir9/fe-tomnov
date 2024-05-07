@@ -164,9 +164,17 @@ const IndividualCardReview = () => {
                 </div>
                 <div className="ind-card-rev-image-main">
                   {editImage && editImage.uri ? (
-                    <img src={editImage.uri} alt="" />
+                    <img
+                      src={editImage.uri}
+                      alt=""
+                      onContextMenu={(e) => e.preventDefault()}
+                    />
                   ) : (
-                    <img src={upscaleImage2.uri} alt="" />
+                    <img
+                      src={upscaleImage2.uri}
+                      alt=""
+                      onContextMenu={(e) => e.preventDefault()}
+                    />
                   )}
                 </div>
               </div>
