@@ -154,13 +154,22 @@ const IndividualCardReview = () => {
               <div className="tomnov-generate-right-section">
                 <div className="tomnov-generate-right-section-header">
                   <h1>Individual Card Review</h1>
-                  <button
-                    className="ind-card-rev-reg-button"
-                    disabled={progress}
-                    onClick={() => addSelectedImage()}
-                  >
-                    <div>Add to Cart</div>
-                  </button>
+                  <div>
+                    <button
+                      className="ind-card-rev-reg-button"
+                      disabled={progress}
+                      onClick={() => addSelectedImage()}
+                    >
+                      <div>Add to Cart</div>
+                    </button>
+                    <button
+                      className="ind-card-rev-reg-button"
+                      disabled={progress}
+                      onClick={() => navigate("/tomnov-generate")}
+                    >
+                      <div>Regenerate</div>
+                    </button>
+                  </div>
                 </div>
                 <div className="ind-card-rev-image-main">
                   {editImage && editImage.uri ? (

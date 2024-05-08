@@ -135,7 +135,7 @@ const UpscaleCard = () => {
                 <div className="tomnov-generate-right-section-header">
                   <h1>Upscaled</h1>
                   {upscaleImage && upscaleImage.uri ? (
-                    <div style={{ display: "flex", gap: "10px" }}>
+                    <div>
                       <button
                         className="ind-card-up-reg-button"
                         disabled={progress}
@@ -143,13 +143,13 @@ const UpscaleCard = () => {
                       >
                         <div>Add to Cart</div>
                       </button>
-                      {/* <button */}
-                      {/*   className="ind-card-up-reg-button" */}
-                      {/*   disabled={progress} */}
-                      {/*   onClick={() => navigate("/order")} */}
-                      {/* > */}
-                      {/*   <div>Cart</div> */}
-                      {/* </button> */}
+                      <button
+                        className="ind-card-rev-reg-button"
+                        disabled={progress}
+                        onClick={() => navigate("/tomnov-generate")}
+                      >
+                        <div>Regenerate</div>
+                      </button>
                     </div>
                   ) : (
                     <> </>
