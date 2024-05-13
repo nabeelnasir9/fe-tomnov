@@ -8,6 +8,10 @@ import { useNavigate } from "react-router-dom";
 import { Navbar } from "../../components";
 import { AuthContext } from "../../config/AuthContext";
 import "./index.css";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
 
 const TomnovGenerate = () => {
   const {
@@ -42,7 +46,7 @@ const TomnovGenerate = () => {
     setProgress(true);
     try {
       const selectedEthnicities = Ethnicity.filter((item) => item.selected).map(
-        (item) => item.title,
+        (item) => item.title
       );
 
       const ethnicityString = selectedEthnicities.join(", ");
@@ -51,7 +55,7 @@ const TomnovGenerate = () => {
         {
           ethnicity: ethnicityString,
           gender: selectedGender,
-        },
+        }
       );
       setGeneratedImages2(response.data);
       setMainImageStack(response.data);
@@ -67,6 +71,58 @@ const TomnovGenerate = () => {
       <Grid container spacing={0}>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1}></Grid>
         <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
+          <List style={{ marginBottom: "30px" }}>
+            <h1
+              style={{
+                color: "white",
+                borderBottom: "2px solid #9432C3",
+                maxWidth: "300px",
+                fontWeight:'bolder'
+              }}
+              className="tomnov-generate-left-heading"
+            >
+             Generate Instructions:
+            </h1>
+
+            {/* Before Generation Instructions */}
+            <ListItem>
+              <ListItemText>
+                <Typography
+                  variant="subtitle1"
+                  component="div"
+                  style={{ color: "white", fontWeight:'bolder' }}
+                >
+                  Before Generation:
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - Selecting the Gender and Ethnicity is mandatory for
+                  generating 100% results for you.
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - During Generation please be patient. Our Algorithm is
+                  creating best results for you.
+                </Typography>
+              </ListItemText>
+            </ListItem>
+
+            {/* After Generation Instructions */}
+            <ListItem>
+              <ListItemText>
+                <Typography
+                  variant="subtitle1"
+                  component="div"
+                  style={{ color: "white", fontWeight:'bolder' }}
+                >
+                  After Generation:
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - After generating the results, please select an image grid
+                  you want to proceed with and don’t worry you can choose other
+                  results too.
+                </Typography>
+              </ListItemText>
+            </ListItem>
+          </List>{" "}
           <Grid container spacing={4}>
             <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
               <h1 className="tomnov-generate-left-heading">
