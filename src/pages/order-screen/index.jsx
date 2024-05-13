@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { Navbar } from "../../components";
 import { AuthContext } from "../../config/AuthContext";
 import "./index.css";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
 
 const OrderScreen = () => {
   const { setUpscaleImage } = useContext(AuthContext);
@@ -41,7 +45,7 @@ const OrderScreen = () => {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body),
-      },
+      }
     );
     const session = await response.json();
     window.location.href = session.url;
@@ -62,6 +66,41 @@ const OrderScreen = () => {
       <Grid container spacing={10}>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1}></Grid>
         <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
+          <List style={{ marginBottom: "50px" }}>
+            <h1
+              style={{
+                color: "white",
+                borderBottom: "2px solid #9432C3",
+                maxWidth: "280px",
+                fontWeight:'bolder'
+              }}
+              className="tomnov-generate-left-heading"
+            >
+              Order Instructions:
+            </h1>
+
+            {/* Before Generation Instructions */}
+            <ListItem>
+              <ListItemText>
+                <Typography
+                  variant="subtitle1"
+                  component="div"
+                  style={{ color: "white", fontWeight:'bolder' }}
+                >
+                  CONGRATULATIONS!! on reaching the final step.
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - Before proceeding with Print & Order. Please first click on
+                  the images you want to proceed with. We have included this for
+                  the security convenience.
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - After selecting the images you will see border around it. It
+                  means you are good to go and proceed with the images.
+                </Typography>
+              </ListItemText>
+            </ListItem>
+          </List>{" "}
           <Grid container spacing={4}>
             <div className="tomnov-generate-right-section">
               <div className="tomnov-generate-right-section-header">

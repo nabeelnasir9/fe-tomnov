@@ -67,7 +67,7 @@ const OrderHistory = () => {
             params: {
               userEmail: email,
             },
-          },
+          }
         );
         if (response.status === 200) {
           console.log("User orders:", response.data);
@@ -99,9 +99,9 @@ const OrderHistory = () => {
             <p>Order History</p>
           </button>
           <p className="order-history-text">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat.
+            Here, you can review all your past orders, track their statuses, and
+            re-order products you have bought before. Browse through your order
+            history to stay updated on your purchases.
           </p>
 
           <div className="order-history-table-main">
@@ -178,7 +178,7 @@ const OrderHistory = () => {
                                   {row.lineItems.reduce(
                                     (total, item) =>
                                       total + parseInt(item.quantity),
-                                    0,
+                                    0
                                   )}
                                 </p>
                               </div>
@@ -200,7 +200,7 @@ const OrderHistory = () => {
                                     row.lineItems.reduce(
                                       (total, item) =>
                                         total + item.price_data.unit_amount,
-                                      0,
+                                      0
                                     ) / 100
                                   ).toFixed(2)}
                                 </p>

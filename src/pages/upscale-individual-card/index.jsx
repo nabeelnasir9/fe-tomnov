@@ -6,6 +6,10 @@ import { Navbar } from "../../components";
 import { AuthContext } from "../../config/AuthContext";
 import axios from "axios";
 import "./index.css";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
 
 const UpscaleCard = () => {
   const navigate = useNavigate();
@@ -36,7 +40,7 @@ const UpscaleCard = () => {
         {
           messageId: generatedImages2[selectedIndex].task_id,
           upscale: type,
-        },
+        }
       );
       setUpscaleImage(response.data);
       setUpscaleImage2(response.data);
@@ -70,6 +74,57 @@ const UpscaleCard = () => {
       <Grid container spacing={0}>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1}></Grid>
         <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
+          <List style={{ marginBottom: "30px" }}>
+            <h1
+              style={{
+                color: "white",
+                borderBottom: "2px solid #9432C3",
+                maxWidth: "300px",
+                fontWeight: "bolder",
+              }}
+              className="tomnov-generate-left-heading"
+            >
+              Upscale Instructions:
+            </h1>
+
+            {/* Before Generation Instructions */}
+            <ListItem>
+              <ListItemText>
+              <Typography
+                  variant="subtitle1"
+                  component="div"
+                  style={{ color: "white", fontWeight:'bolder' }}
+                >
+                  Before Upscale:
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - There are four buttons that gives you options for selecting
+                  one of the image. Click them and have your desired image.
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - You are not liking the Results? Do not worry there are next
+                  and previous buttons for you.
+                </Typography>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText>
+                <Typography
+                  variant="subtitle1"
+                  component="div"
+                  style={{ color: "white", fontWeight:'bolder' }}
+                >
+                  After Upscale:
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - After upscaling your image. You can either select this here as add to cart to save it for later or you can also click on the confirm button to proceed with next step.
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - If you are not liking the result? Then click on the regenerate and go back to the previous results.
+                </Typography>
+              </ListItemText>
+            </ListItem>
+          </List>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
               <h1 className="tomnov-generate-left-heading">
@@ -134,6 +189,7 @@ const UpscaleCard = () => {
               <div className="tomnov-generate-right-section">
                 <div className="tomnov-generate-right-section-header">
                   <h1>Upscaled</h1>
+                 
                   {upscaleImage && upscaleImage.uri ? (
                     <div>
                       <button
@@ -152,7 +208,13 @@ const UpscaleCard = () => {
                       </button>
                     </div>
                   ) : (
-                    <> </>
+                    <>
+                     <button
+                        className="ind-card-up-reg-button"
+                        onClick={() => navigate("/tomnov-generate")}
+                      >
+                        <div>Back</div>
+                      </button> </>
                   )}
                 </div>
                 <div className="ind-card-rev-image-main">

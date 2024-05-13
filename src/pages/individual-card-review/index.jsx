@@ -7,6 +7,10 @@ import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 import { AuthContext } from "../../config/AuthContext";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
 
 const IndividualCardReview = () => {
   const {
@@ -35,7 +39,7 @@ const IndividualCardReview = () => {
         {
           imgUrl: upscaleImage.uri,
           prompt: `${input}.The subject is a ${selectedGender} of ${ethnicityString} ethnicity.fullshot + photorealistic details + tarot card. --ar 1:2 --style raw --iw 1`,
-        },
+        }
       );
       setEditImage(response.data);
       console.log("Response", response);
@@ -55,7 +59,7 @@ const IndividualCardReview = () => {
         {
           target: image,
           source: sourceImg,
-        },
+        }
       );
       setEditImage({ uri: response.data.uri });
 
@@ -108,6 +112,71 @@ const IndividualCardReview = () => {
       <Grid container spacing={0}>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1}></Grid>
         <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
+          <List style={{ marginBottom: "30px" }}>
+            <h1
+              style={{
+                color: "white",
+                borderBottom: "2px solid #9432C3",
+                maxWidth: "300px",
+                fontWeight: "bolder",
+              }}
+              className="tomnov-generate-left-heading"
+            >
+              Upscale Instructions:
+            </h1>
+
+            {/* Before Generation Instructions */}
+            <ListItem>
+              <ListItemText>
+                <Typography
+                  variant="subtitle1"
+                  component="div"
+                  style={{
+                    color: "white",
+                    fontWeight: "bolder",
+                    marginBottom: "10px",
+                  }}
+                >
+                  You can use both Prompt Editor & FaceSwap. If you donot want
+                  to use one of them then its totally workable. If you do not
+                  want any change here, you can directly click on confirm if you
+                  have previously click on the Add to Cart button.
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  component="div"
+                  style={{ color: "white", fontWeight: "bolder" }}
+                >
+                  Prompt Editor:
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - Now you have finalized the Tarot card. You can edit the
+                  picture. Its a beta version so there will be a slight edge on
+                  generation.
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - You can write you editing and click on generate button.
+                </Typography>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText>
+                <Typography
+                  variant="subtitle1"
+                  component="div"
+                  style={{ color: "white", fontWeight: "bolder" }}
+                >
+                  Face Swap:
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - You can upload your selfie and then click on the face swap button.
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                  - Kindly wait for the message to come that your image is being uploaded.
+                </Typography>
+              </ListItemText>
+            </ListItem>
+          </List>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
               <h1 className="tomnov-generate-left-heading">
