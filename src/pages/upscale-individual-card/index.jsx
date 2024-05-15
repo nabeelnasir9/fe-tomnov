@@ -16,6 +16,7 @@ const UpscaleCard = () => {
   const {
     generatedImages2,
     upscaleImage,
+    addMutation,
     setEditImage,
     setUpscaleImage,
     setUpscaleImage2,
@@ -40,7 +41,7 @@ const UpscaleCard = () => {
         {
           messageId: generatedImages2[selectedIndex].task_id,
           upscale: type,
-        }
+        },
       );
       setUpscaleImage(response.data);
       setUpscaleImage2(response.data);
@@ -51,16 +52,8 @@ const UpscaleCard = () => {
     }
   };
   const addSelectedImage = async () => {
-    const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/selected`;
-    const email = localStorage.getItem("email");
     const image = upscaleImage.uri;
-    try {
-      await axios.post(url, { email, image });
-      toast.success("Image added to account!");
-    } catch (error) {
-      console.log(error);
-      toast.error("Error Occurred.Reload and try again.");
-    }
+    addMutation.mutate({ image });
   };
 
   useEffect(() => {
@@ -90,10 +83,10 @@ const UpscaleCard = () => {
             {/* Before Generation Instructions */}
             <ListItem>
               <ListItemText>
-              <Typography
+                <Typography
                   variant="subtitle1"
                   component="div"
-                  style={{ color: "white", fontWeight:'bolder' }}
+                  style={{ color: "white", fontWeight: "bolder" }}
                 >
                   Before Upscale:
                 </Typography>
@@ -112,15 +105,18 @@ const UpscaleCard = () => {
                 <Typography
                   variant="subtitle1"
                   component="div"
-                  style={{ color: "white", fontWeight:'bolder' }}
+                  style={{ color: "white", fontWeight: "bolder" }}
                 >
                   After Upscale:
                 </Typography>
                 <Typography style={{ color: "white" }}>
-                  - After upscaling your image. You can either select this here as add to cart to save it for later or you can also click on the confirm button to proceed with next step.
+                  - After upscaling your image. You can either select this here
+                  as add to cart to save it for later or you can also click on
+                  the confirm button to proceed with next step.
                 </Typography>
                 <Typography style={{ color: "white" }}>
-                  - If you are not liking the result? Then click on the regenerate and go back to the previous results.
+                  - If you are not liking the result? Then click on the
+                  regenerate and go back to the previous results.
                 </Typography>
               </ListItemText>
             </ListItem>
@@ -189,7 +185,7 @@ const UpscaleCard = () => {
               <div className="tomnov-generate-right-section">
                 <div className="tomnov-generate-right-section-header">
                   <h1>Upscaled</h1>
-                 
+
                   {upscaleImage && upscaleImage.uri ? (
                     <div>
                       <button
@@ -209,12 +205,17 @@ const UpscaleCard = () => {
                     </div>
                   ) : (
                     <>
-                     <button
+                      <button
                         className="ind-card-up-reg-button"
-                        onClick={() => navigate("/tomnov-generate")}
+                        onClick={() => {
+                          setUpscaleImage("");
+                          setUpscaleImage2("");
+                          navigate("/tomnov-generate");
+                        }}
                       >
                         <div>Back</div>
-                      </button> </>
+                      </button>{" "}
+                    </>
                   )}
                 </div>
                 <div className="ind-card-rev-image-main">

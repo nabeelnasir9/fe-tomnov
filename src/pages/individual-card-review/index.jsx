@@ -15,6 +15,9 @@ import Typography from "@mui/material/Typography";
 const IndividualCardReview = () => {
   const {
     upscaleImage,
+    addMutation,
+    setUpscaleImage,
+    setUpscaleImage2,
     upscaleImage2,
     editImage,
     setEditImage,
@@ -39,7 +42,7 @@ const IndividualCardReview = () => {
         {
           imgUrl: upscaleImage.uri,
           prompt: `${input}.The subject is a ${selectedGender} of ${ethnicityString} ethnicity.fullshot + photorealistic details + tarot card. --ar 1:2 --style raw --iw 1`,
-        }
+        },
       );
       setEditImage(response.data);
       console.log("Response", response);
@@ -59,7 +62,7 @@ const IndividualCardReview = () => {
         {
           target: image,
           source: sourceImg,
-        }
+        },
       );
       setEditImage({ uri: response.data.uri });
 
@@ -72,18 +75,9 @@ const IndividualCardReview = () => {
   };
   const addSelectedImage = async () => {
     setProgress(true);
-    const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/selected`;
-    const email = localStorage.getItem("email");
     const image = editImage.uri || upscaleImage2.uri;
-    console.log("addSelectedImage", image);
-    try {
-      await axios.post(url, { email, image });
-      toast.success("Image added to account!");
-      setProgress(false);
-    } catch (error) {
-      toast.error("Error Occurred.Reload and try again.");
-      console.error("Error adding selected image:", error.message);
-    }
+    addMutation.mutate({ image });
+    setProgress(false);
   };
   async function checkAndAddUrl() {
     try {
@@ -169,10 +163,12 @@ const IndividualCardReview = () => {
                   Face Swap:
                 </Typography>
                 <Typography style={{ color: "white" }}>
-                  - You can upload your selfie and then click on the face swap button.
+                  - You can upload your selfie and then click on the face swap
+                  button.
                 </Typography>
                 <Typography style={{ color: "white" }}>
-                  - Kindly wait for the message to come that your image is being uploaded.
+                  - Kindly wait for the message to come that your image is being
+                  uploaded.
                 </Typography>
               </ListItemText>
             </ListItem>
@@ -212,6 +208,8 @@ const IndividualCardReview = () => {
                   disabled={progress}
                   onClick={async () => {
                     await checkAndAddUrl();
+                    setUpscaleImage("");
+                    setUpscaleImage2("");
                     navigate("/order");
                   }}
                 >

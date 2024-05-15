@@ -1,7 +1,5 @@
 import Grid from "@mui/material/Grid";
 import { RotatingLines } from "react-loader-spinner";
-import toast from "react-hot-toast";
-import axios from "axios";
 import { useContext, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
@@ -15,17 +13,15 @@ import Typography from "@mui/material/Typography";
 
 const TomnovGenerate = () => {
   const {
-    setGeneratedImages2,
+    fetchMutation,
     selectedGender,
     setSelectedGender,
     mainImageStack,
-    setMainImageStack,
     Ethnicity,
     setEthnicity,
   } = useContext(AuthContext);
   const navigate = useNavigate();
   const GenderList = ["Male", "Female", "Other"];
-  const [progress, setProgress] = useState(false);
   const handleEthnicitySelection = (index) => {
     const updatedEthnicity = Ethnicity.map((item, i) => {
       if (i === index) {
@@ -42,28 +38,16 @@ const TomnovGenerate = () => {
     });
     setEthnicity(updatedEthnicity);
   };
-  const fetchData2 = async () => {
-    setProgress(true);
-    try {
-      const selectedEthnicities = Ethnicity.filter((item) => item.selected).map(
-        (item) => item.title
-      );
 
-      const ethnicityString = selectedEthnicities.join(", ");
-      const response = await axios.post(
-        `${import.meta.env.VITE_SERVER_URL}/api/generate/multi`,
-        {
-          ethnicity: ethnicityString,
-          gender: selectedGender,
-        }
-      );
-      setGeneratedImages2(response.data);
-      setMainImageStack(response.data);
-      setProgress(false);
-    } catch (error) {
-      toast.error("Error occurred. Reload and try again.");
-      console.error("Error fetching generated images:", error);
-    }
+  const handleGenerate = () => {
+    const selectedEthnicities = Ethnicity.filter((item) => item.selected).map(
+      (item) => item.title,
+    );
+    const ethnicityString = selectedEthnicities.join(", ");
+    fetchMutation.mutate({
+      ethnicity: ethnicityString,
+      gender: selectedGender,
+    });
   };
   return (
     <div className="tomnov-generate-container">
@@ -77,11 +61,11 @@ const TomnovGenerate = () => {
                 color: "white",
                 borderBottom: "2px solid #9432C3",
                 maxWidth: "300px",
-                fontWeight:'bolder'
+                fontWeight: "bolder",
               }}
               className="tomnov-generate-left-heading"
             >
-             Generate Instructions:
+              Generate Instructions:
             </h1>
 
             {/* Before Generation Instructions */}
@@ -90,7 +74,7 @@ const TomnovGenerate = () => {
                 <Typography
                   variant="subtitle1"
                   component="div"
-                  style={{ color: "white", fontWeight:'bolder' }}
+                  style={{ color: "white", fontWeight: "bolder" }}
                 >
                   Before Generation:
                 </Typography>
@@ -111,7 +95,7 @@ const TomnovGenerate = () => {
                 <Typography
                   variant="subtitle1"
                   component="div"
-                  style={{ color: "white", fontWeight:'bolder' }}
+                  style={{ color: "white", fontWeight: "bolder" }}
                 >
                   After Generation:
                 </Typography>
@@ -158,8 +142,8 @@ const TomnovGenerate = () => {
                 })}
               </div>
               <button
-                onClick={() => fetchData2()}
-                disabled={progress}
+                onClick={() => handleGenerate()}
+                disabled={fetchMutation.isPending}
                 className="big-button"
               >
                 Generate Cards
@@ -180,7 +164,7 @@ const TomnovGenerate = () => {
                 </div>
                 <div className="tomnov-generate-image-container">
                   <Grid container spacing={3}>
-                    {progress ? (
+                    {fetchMutation.isPending ? (
                       <div className="progress-bar-main">
                         <h1 className="progress-bar-heading">
                           Generating please be patient...
