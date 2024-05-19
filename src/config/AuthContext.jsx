@@ -20,6 +20,10 @@ export const AuthProvider = ({ children }) => {
       title: "Latina/Hispanic",
       selected: false,
     },
+    {
+      title: "Asian",
+      selected: false,
+    },
   ]);
   const selectedEthnicities = Ethnicity.filter((item) => item.selected).map(
     (item) => item.title,
@@ -32,19 +36,6 @@ export const AuthProvider = ({ children }) => {
   const [mainImageStack, setMainImageStack] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [sourceImg, setsourceImg] = useState("");
-
-  const addSelectedImage = async () => {
-    const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/selected`;
-    const email = localStorage.getItem("email");
-    const image = upscaleImage.uri;
-    try {
-      await axios.post(url, { email, image });
-      toast.success("Image added to account!");
-    } catch (error) {
-      console.log(error);
-      toast.error("Error Occurred.Reload and try again.");
-    }
-  };
 
   const addMutation = useMutation({
     mutationKey: ["addImage"],
@@ -70,7 +61,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchMutation = useMutation({
     mutationKey: ["mainstack"],
-    mutationFn: async () => {
+    mutationFn: async (data) => {
       try {
         const selectedEthnicities = Ethnicity.filter(
           (item) => item.selected,
@@ -81,6 +72,7 @@ export const AuthProvider = ({ children }) => {
         const response = await axios.post(
           `${import.meta.env.VITE_SERVER_URL}/api/generate/multi`,
           {
+            prompts: data.prompts,
             ethnicity: ethnicityString,
             gender: selectedGender,
           },

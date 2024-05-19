@@ -1,15 +1,17 @@
+import React, { useContext, useState } from "react";
 import Grid from "@mui/material/Grid";
+import axios from "axios";
 import { RotatingLines } from "react-loader-spinner";
-import { useContext, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../../components";
 import { AuthContext } from "../../config/AuthContext";
-import "./index.css";
+import { useQuery } from "@tanstack/react-query";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
+import "./index.css";
 
 const TomnovGenerate = () => {
   const {
@@ -21,19 +23,16 @@ const TomnovGenerate = () => {
     setEthnicity,
   } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [selectedPrompts, setSelectedPrompts] = useState([]);
+
   const GenderList = ["Male", "Female", "Other"];
+
   const handleEthnicitySelection = (index) => {
     const updatedEthnicity = Ethnicity.map((item, i) => {
       if (i === index) {
-        return {
-          ...item,
-          selected: true,
-        };
+        return { ...item, selected: true };
       } else {
-        return {
-          ...item,
-          selected: false,
-        };
+        return { ...item, selected: false };
       }
     });
     setEthnicity(updatedEthnicity);
@@ -47,8 +46,40 @@ const TomnovGenerate = () => {
     fetchMutation.mutate({
       ethnicity: ethnicityString,
       gender: selectedGender,
+      prompts: selectedPrompts,
     });
   };
+
+  const fetchPrompts = useQuery({
+    queryKey: ["prompts"],
+    queryFn: async () => {
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/api/generate/get-prompts`,
+      );
+      return response.data;
+    },
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  // const handlePromptSelection = (prompt) => {
+  //   setSelectedPrompts((prevSelectedPrompts) => {
+  //     if (prevSelectedPrompts.some((p) => p._id === prompt._id)) {
+  //       return prevSelectedPrompts.filter((p) => p._id !== prompt._id);
+  //     } else {
+  //       return [...prevSelectedPrompts, prompt];
+  //     }
+  //   });
+  // };
+  //
+  const handlePromptSelection = (prompt) => {
+    setSelectedPrompts([prompt]); // Set selected prompt as an array with only one element
+  };
+
   return (
     <div className="tomnov-generate-container">
       <Navbar margin={true} />
@@ -115,31 +146,53 @@ const TomnovGenerate = () => {
               <div className="tomnov-generate-line" />
               <h4 className="tomnov-generate-left-title">Choose Gender</h4>
               <div className="tomnov-generate-radio-main">
-                {GenderList.map((v, i) => {
-                  return (
-                    <div key={i} onClick={() => setSelectedGender(v)}>
-                      <div>
-                        {v === selectedGender && (
-                          <div className="tomnov-generate-radio" />
-                        )}
-                      </div>
-                      {v}
+                {GenderList.map((v, i) => (
+                  <div key={i} onClick={() => setSelectedGender(v)}>
+                    <div>
+                      {v === selectedGender && (
+                        <div className="tomnov-generate-radio" />
+                      )}
                     </div>
-                  );
-                })}
+                    {v}
+                  </div>
+                ))}
               </div>
               <h4 className="tomnov-generate-left-title">Ethnicity</h4>
               <div className="tomnov-generate-checkbox-main">
-                {Ethnicity.map((v, i) => {
-                  return (
-                    <div key={i} onClick={() => handleEthnicitySelection(i)}>
-                      <div>
-                        {v.selected && <FaCheck color="#fff" size={13} />}
-                      </div>
-                      {v.title}
+                {Ethnicity.map((v, i) => (
+                  <div key={i} onClick={() => handleEthnicitySelection(i)}>
+                    <div>
+                      {v.selected && <FaCheck color="#fff" size={13} />}
                     </div>
-                  );
-                })}
+                    {v.title}
+                  </div>
+                ))}
+              </div>
+              <h1 className="tomnov-generate-left-title mb-5">Prompts</h1>
+              <div className="flex flex-wrap gap-5">
+                {fetchPrompts.data?.map((prompt, i) => (
+                  <div
+                    className={`flex mb-3 gap-2 relative`}
+                    key={i}
+                    onClick={() => handlePromptSelection(prompt)}
+                  >
+                    <div className="flex-1 w-20 h-20 relative">
+                      <img
+                        src={prompt.img}
+                        className="object-cover w-full h-full rounded-lg"
+                        alt="prompt"
+                      />
+                      <div className="absolute top-0 left-0 w-full h-full bg-black/80 opacity-50 rounded-lg"></div>
+                      {selectedPrompts.some((p) => p._id === prompt._id) ? (
+                        // Render only if prompt is selected
+                        <div className="absolute top-0 left-0 w-full h-full bg-purple-800 opacity-50 rounded-lg"></div>
+                      ) : null}
+                      <h1 className="text-center text-white text-md font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                        {i + 1}
+                      </h1>
+                    </div>
+                  </div>
+                ))}
               </div>
               <button
                 onClick={() => handleGenerate()}
@@ -183,25 +236,23 @@ const TomnovGenerate = () => {
                     ) : (
                       <> </>
                     )}
-                    {mainImageStack?.map((v, i) => {
-                      return (
-                        <Grid item key={i} xs={4} sm={3} md={4} lg={4} xl={3}>
-                          <button
-                            className="tomnov-generate-image-mian"
-                            onClick={() =>
-                              navigate("/upscale", {
-                                state: { index: i },
-                              })
-                            }
-                          >
-                            <img
-                              src={v?.uri}
-                              onContextMenu={(e) => e.preventDefault()}
-                            />
-                          </button>
-                        </Grid>
-                      );
-                    })}
+                    {mainImageStack?.map((v, i) => (
+                      <Grid item key={i} xs={4} sm={3} md={4} lg={4} xl={3}>
+                        <button
+                          className="tomnov-generate-image-mian"
+                          onClick={() =>
+                            navigate("/upscale", {
+                              state: { index: i },
+                            })
+                          }
+                        >
+                          <img
+                            src={v?.uri}
+                            onContextMenu={(e) => e.preventDefault()}
+                          />
+                        </button>
+                      </Grid>
+                    ))}
                   </Grid>
                 </div>
               </div>
@@ -213,4 +264,5 @@ const TomnovGenerate = () => {
     </div>
   );
 };
+
 export default TomnovGenerate;
