@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Navbar } from "../../components";
@@ -24,7 +25,6 @@ const UpscaleCard = () => {
     setSelectedIndex,
   } = useContext(AuthContext);
   const location = useLocation();
-  const [progress, setProgress] = useState(false);
 
   const selectedImage =
     generatedImages2 &&
@@ -33,9 +33,9 @@ const UpscaleCard = () => {
       ? generatedImages2[selectedIndex].uri
       : "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQSqC1w7juXyqLMMZ5zuUO5UqduW9xxfOfpANgUqLhfWFKj4D0W";
 
-  const upscaleReq = async (type) => {
-    setProgress(true);
-    try {
+  const { mutate: upscaleReq, isPending: progress } = useMutation({
+    mutationKey: ["upscale"],
+    mutationFn: async (type) => {
       const response = await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/api/generate/upscale`,
         {
@@ -43,17 +43,36 @@ const UpscaleCard = () => {
           upscale: type,
         },
       );
-      setUpscaleImage(response.data);
-      setUpscaleImage2(response.data);
-      setProgress(false);
-    } catch (error) {
-      console.log(error);
-      toast.error("Error Occurred.Reload and try again.");
-    }
-  };
+      return response.data;
+    },
+    onSuccess: (data) => {
+      setUpscaleImage(data);
+      setUpscaleImage2(data);
+
+      toast.success("Upscaled Successfully");
+    },
+  });
+  // const upscaleReq = async (type) => {
+  //   setProgress(true);
+  //   try {
+  //     const response = await axios.post(
+  //       `${import.meta.env.VITE_SERVER_URL}/api/generate/upscale`,
+  //       {
+  //         messageId: generatedImages2[selectedIndex].task_id,
+  //         upscale: type,
+  //       },
+  //     );
+  //     setUpscaleImage(response.data);
+  //     setUpscaleImage2(response.data);
+  //     setProgress(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error("Error Occurred.Reload and try again.");
+  //   }
+  // };
   const addSelectedImage = async () => {
     const image = upscaleImage.uri;
-    addMutation.mutate({ image });
+    addMutation.mutate(image);
   };
 
   useEffect(() => {

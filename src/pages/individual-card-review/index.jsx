@@ -76,12 +76,12 @@ const IndividualCardReview = () => {
   const addSelectedImage = async () => {
     setProgress(true);
     const image = editImage.uri || upscaleImage2.uri;
-    addMutation.mutate({ image });
+    addMutation.mutate(image);
     setProgress(false);
   };
   async function checkAndAddUrl() {
     try {
-      const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/check`;
+      const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/selected`;
       const email = localStorage.getItem("email");
       const image = editImage.uri || upscaleImage2.uri;
       const response = await axios.post(url, { email: email, image: image });

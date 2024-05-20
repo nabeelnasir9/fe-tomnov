@@ -44,17 +44,14 @@ export const AuthProvider = ({ children }) => {
         const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/selected`;
         const email = localStorage.getItem("email");
         await axios.post(url, { email, image });
-        toast.success("Image added to account!");
       } catch (error) {
-        console.log(error);
-        toast.error("Error Occurred.Reload and try again.");
+        throw new Error("Network response was not ok");
       }
     },
     onSuccess: () => {
       toast.success("Image added to account!");
     },
-    onError: (error) => {
-      console.error("Mutation error:", error);
+    onError: () => {
       toast.error("Error occurred while adding image");
     },
   });

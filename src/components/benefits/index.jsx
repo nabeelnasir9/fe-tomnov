@@ -1,4 +1,3 @@
-import React from "react";
 import Grid from "@mui/material/Grid";
 import BenefitsImage from "./../../assets/benefits.png";
 import "./index.css";

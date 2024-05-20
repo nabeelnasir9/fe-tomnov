@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Navbar, OrderSummary } from "../../components";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";

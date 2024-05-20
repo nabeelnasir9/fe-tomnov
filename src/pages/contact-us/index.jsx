@@ -1,4 +1,3 @@
-import React from "react";
 import { Navbar, Button } from "../../components";
 import Grid from "@mui/material/Grid";
 import "./index.css";
@@ -22,7 +21,10 @@ const ContactUs = () => {
                     <p className="contact-left-title">Email Address</p>
                     <p className="contact-left-value">Johndoe@example.com</p>
                   </div>
-                  <div className="contact-left-main" style={{borderWidth:"0px"}}>
+                  <div
+                    className="contact-left-main"
+                    style={{ borderWidth: "0px" }}
+                  >
                     <p className="contact-left-title">Location</p>
                     <p className="contact-left-value">Lorem Ipsum</p>
                   </div>

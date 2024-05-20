@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
 import { RotatingLines } from "react-loader-spinner";
@@ -219,7 +219,7 @@ const TomnovGenerate = () => {
                   <Grid container spacing={3}>
                     {fetchMutation.isPending ? (
                       <div className="progress-bar-main">
-                        <h1 className="progress-bar-heading">
+                        <h1 className="lg:text-2xl text-white font-semibold text-base">
                           Generating please be patient...
                         </h1>
                         <RotatingLines
