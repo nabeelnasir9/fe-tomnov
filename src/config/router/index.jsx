@@ -2,12 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import {
   LandingPage,
-  UpscaleCard,
   Login,
   SignUp,
   TomnovGenerate,
   IndividualCardReview,
-  Account,
   Shipping,
   Success,
   Canceled,
@@ -26,10 +24,8 @@ const RouterNavigation = () => {
           <Route path="/log-in" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/account" element={<Account />} />
             <Route path="/success" element={<Success />} />
             <Route path="/cancel" element={<Canceled />} />
-            <Route path="/upscale" element={<UpscaleCard />} />
             <Route path="/tomnov-generate" element={<TomnovGenerate />} />
             <Route path="/order" element={<OrderScreen />} />
             <Route
