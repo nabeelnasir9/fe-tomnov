@@ -63,7 +63,7 @@ const LandingPage = () => {
                   </div>
                   <div className="prompt-generate-button-main">
                     <button
-                      className="prompt-generate-button"
+                      className="prompt-generate-button cursor-pointer"
                       onClick={() => navigate("/tomnov-generate")}
                     >
                       Generate

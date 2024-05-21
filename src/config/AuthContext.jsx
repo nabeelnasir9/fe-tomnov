@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
       toast.success("Image added to account!");
     },
     onError: () => {
-      toast.error("Error occurred while adding image");
+      toast.error("Already added to account!");
     },
   });
 

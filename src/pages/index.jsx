@@ -12,7 +12,6 @@ import Canceled from "./cancel";
 import Success from "./success";
 import UpscaleCard from "./upscale-individual-card";
 import OrderScreen from "./order-screen";
-import Test from "./test";
 export {
   LandingPage,
   Login,
@@ -27,6 +26,5 @@ export {
   ContactUs,
   Success,
   Canceled,
-  Test,
   OrderHistory,
 };

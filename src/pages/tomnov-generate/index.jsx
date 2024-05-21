@@ -66,16 +66,6 @@ const TomnovGenerate = () => {
     },
   });
 
-  // const handlePromptSelection = (prompt) => {
-  //   setSelectedPrompts((prevSelectedPrompts) => {
-  //     if (prevSelectedPrompts.some((p) => p._id === prompt._id)) {
-  //       return prevSelectedPrompts.filter((p) => p._id !== prompt._id);
-  //     } else {
-  //       return [...prevSelectedPrompts, prompt];
-  //     }
-  //   });
-  // };
-  //
   const handlePromptSelection = (prompt) => {
     setSelectedPrompts([prompt]); // Set selected prompt as an array with only one element
   };
@@ -169,14 +159,14 @@ const TomnovGenerate = () => {
                 ))}
               </div>
               <h1 className="tomnov-generate-left-title mb-5">Prompts</h1>
-              <div className="flex flex-wrap gap-5">
+              <div className="flex flex-wrap gap-5 animate-fade">
                 {fetchPrompts.data?.map((prompt, i) => (
                   <div
                     className={`flex mb-3 gap-2 relative`}
                     key={i}
                     onClick={() => handlePromptSelection(prompt)}
                   >
-                    <div className="flex-1 w-20 h-20 relative">
+                    <div className="flex-1 w-20 h-20 relative cursor-pointer">
                       <img
                         src={prompt.img}
                         className="object-cover w-full h-full rounded-lg"
@@ -184,7 +174,6 @@ const TomnovGenerate = () => {
                       />
                       <div className="absolute top-0 left-0 w-full h-full bg-black/80 opacity-50 rounded-lg"></div>
                       {selectedPrompts.some((p) => p._id === prompt._id) ? (
-                        // Render only if prompt is selected
                         <div className="absolute top-0 left-0 w-full h-full bg-purple-800 opacity-50 rounded-lg"></div>
                       ) : null}
                       <h1 className="text-center text-white text-md font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
@@ -218,7 +207,7 @@ const TomnovGenerate = () => {
                 <div className="tomnov-generate-image-container">
                   <Grid container spacing={3}>
                     {fetchMutation.isPending ? (
-                      <div className="progress-bar-main">
+                      <div className="progress-bar-main animate-fade">
                         <h1 className="lg:text-2xl text-white font-semibold text-base">
                           Generating please be patient...
                         </h1>
@@ -234,25 +223,33 @@ const TomnovGenerate = () => {
                         />
                       </div>
                     ) : (
-                      <> </>
-                    )}
-                    {mainImageStack?.map((v, i) => (
-                      <Grid item key={i} xs={4} sm={3} md={4} lg={4} xl={3}>
-                        <button
-                          className="tomnov-generate-image-mian"
-                          onClick={() =>
-                            navigate("/upscale", {
-                              state: { index: i },
-                            })
-                          }
+                      mainImageStack?.map((v, i) => (
+                        <Grid
+                          item
+                          key={i}
+                          xs={4}
+                          sm={3}
+                          md={4}
+                          lg={4}
+                          xl={3}
+                          className="animate-fade"
                         >
-                          <img
-                            src={v?.uri}
-                            onContextMenu={(e) => e.preventDefault()}
-                          />
-                        </button>
-                      </Grid>
-                    ))}
+                          <button
+                            className="tomnov-generate-image-mian"
+                            onClick={() =>
+                              navigate("/individual-card-review", {
+                                state: { index: i },
+                              })
+                            }
+                          >
+                            <img
+                              src={v?.uri}
+                              onContextMenu={(e) => e.preventDefault()}
+                            />
+                          </button>
+                        </Grid>
+                      ))
+                    )}
                   </Grid>
                 </div>
               </div>

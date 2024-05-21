@@ -128,7 +128,16 @@ const OrderScreen = () => {
                   {images?.data?.map((v, i) => {
                     const isSelected = selectedImages.includes(v);
                     return (
-                      <Grid item key={i} xs={4} sm={3} md={4} lg={4} xl={3}>
+                      <Grid
+                        item
+                        key={i}
+                        xs={4}
+                        sm={3}
+                        md={4}
+                        lg={4}
+                        xl={3}
+                        className="animate-fade"
+                      >
                         <button
                           className={`tomnov-generate-image-mian ${
                             isSelected ? "selected" : ""

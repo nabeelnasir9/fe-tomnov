@@ -38,7 +38,10 @@ export default function Accept({ setProgress }) {
           ),
         );
         const apiKey = import.meta.env.VITE_BB_API_KEY;
-        setProgress(true);
+        setProgress({
+          status: true,
+          message: "Uploading Please Be Patient...",
+        });
         const imageFile = acceptedFiles[0];
         const formData = new FormData();
         formData.append("image", imageFile);
@@ -59,7 +62,10 @@ export default function Accept({ setProgress }) {
           })
           .finally(() => {
             setUploading(false);
-            setProgress(false);
+            setProgress({
+              status: false,
+              message: "",
+            });
           });
       }
     },
