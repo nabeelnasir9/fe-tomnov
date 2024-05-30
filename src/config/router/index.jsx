@@ -15,6 +15,7 @@ import {
   OrderScreen,
 } from "../../pages";
 import ProtectedRoute from "./ProtectedRoutes";
+import ResetPassword from "../../pages/ResetPass";
 const RouterNavigation = () => {
   return (
     <>
@@ -34,6 +35,7 @@ const RouterNavigation = () => {
             />
             <Route path="/order-history" element={<OrderHistory />} />
           </Route>
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/contact-us" element={<ContactUs />} />

@@ -81,7 +81,7 @@ const TomnovGenerate = () => {
               style={{
                 color: "white",
                 borderBottom: "2px solid #9432C3",
-                maxWidth: "300px",
+                maxWidth: "350px",
                 fontWeight: "bolder",
               }}
               className="tomnov-generate-left-heading"
@@ -102,6 +102,10 @@ const TomnovGenerate = () => {
                 <Typography style={{ color: "white" }}>
                   - Selecting the Gender and Ethnicity is mandatory for
                   generating 100% results for you.
+                 
+                </Typography>
+                <Typography style={{ color: "white" }}>
+                - Choose one of the card from below to get the similar results.
                 </Typography>
                 <Typography style={{ color: "white" }}>
                   - During Generation please be patient. Our Algorithm is
@@ -121,9 +125,20 @@ const TomnovGenerate = () => {
                   After Generation:
                 </Typography>
                 <Typography style={{ color: "white" }}>
-                  - After generating the results, please select an image grid
-                  you want to proceed with and don’t worry you can choose other
-                  results too.
+                  - After generating the results, Please click on the image to proceed with FaceSwap and Prompt Editor.
+                </Typography>
+              </ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText>
+                <Typography
+                  variant="subtitle1"
+                  component="div"
+                  style={{ color: "white", fontWeight: "bolder" }}
+                >
+Important:                </Typography>
+                <Typography style={{ color: "white" }}>
+                  Generating 22 Cards are mandatory to proceed with the orders. Otherwise you will not be able to do that.
                 </Typography>
               </ListItemText>
             </ListItem>
