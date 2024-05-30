@@ -1,0 +1,32 @@
+.reset-password-container {
+    background-image: url("./../../assets/log-in.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+  .form-container {
+    background: rgba(255, 255, 255, 0.158);
+    box-shadow: 10px 3px 10px white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .reset-password-heading {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  /* button {
+    width: 100%;
+  } */
+  
