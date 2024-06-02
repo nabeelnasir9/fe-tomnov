@@ -36,7 +36,7 @@ const LandingPage = () => {
       </div>
       <div className="landing-header">
         <div className="landing-header-inner">
-          <Grid container spacing={0} style={{ height: "100%" }}>
+          <Grid container spacing={0} style={{ height: "100vh" }}>
             <Grid item xs={1} sm={1} md={2} lg={2} xl={3}></Grid>
             <Grid item xs={10} sm={10} md={8} lg={8} xl={6}>
               <div className="landing-header-section">
@@ -51,6 +51,8 @@ const LandingPage = () => {
                     your own projects. Or, use our free prompt generator to
                     create your own prompts from mages.
                   </p>
+                  <h1 className="welcome-message">HERE YOU CAN EASILY GENERATE A CUSTOM DECK OF TAROT CARDS</h1>
+                  <p className="welcome-para">Allow us to walk you through the design of your 22 major arcana cards. You can use our prompts to get started and tweak the results until you are satisfied. You can further customize the cards with the face swap feature. To complete your deck, choose from a selection of stunning sets of lesser arcana cards. Click Generate to get started!</p>
                 </div>
                 <div>
                   <div className="prompt-box">
