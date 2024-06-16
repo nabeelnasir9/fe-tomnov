@@ -41,12 +41,18 @@ const LeftGenerate = () => {
           </div>
         ))}
       </div>
-      <h1 className="tomnov-generate-left-title mb-5">Prompts</h1>
+      <h1 className="tomnov-generate-left-title mb-5">Major Arcana</h1>
       <LeftPrompts
         handlePromptSelection={handlePromptSelection}
         selectedPrompts={selectedPrompts}
         fetchPrompts={fetchPrompts}
       />
+      <button
+        className="ind-card-rev-confirm-button"
+        onClick={() => console.log("generate")}
+      >
+        <div>Review</div>
+      </button>
     </Grid>
   );
 };

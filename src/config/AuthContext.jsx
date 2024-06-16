@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
@@ -7,6 +7,12 @@ export const AuthContext = createContext();
 // eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
   const [selectedGender, setSelectedGender] = useState("Male");
+  const [selectedPrompts, setSelectedPrompts] = useState([]);
+  const [mainImage, setMainImage] = useState("");
+  useEffect(() => {
+    console.log(mainImage.uri);
+  }, [mainImage]);
+
   const [Ethnicity, setEthnicity] = useState([
     {
       title: "Caucasians",
@@ -59,6 +65,7 @@ export const AuthProvider = ({ children }) => {
   const fetchMutation = useMutation({
     mutationKey: ["mainstack"],
     mutationFn: async (data) => {
+      console.log("fetchMutation", data);
       try {
         const selectedEthnicities = Ethnicity.filter(
           (item) => item.selected,
@@ -69,7 +76,7 @@ export const AuthProvider = ({ children }) => {
         const response = await axios.post(
           `${import.meta.env.VITE_SERVER_URL}/api/generate/multi`,
           {
-            prompts: data.prompts,
+            prompts: data.prompts.prompt,
             ethnicity: ethnicityString,
             gender: selectedGender,
           },
@@ -80,9 +87,7 @@ export const AuthProvider = ({ children }) => {
       }
     },
     onSuccess: (data) => {
-      setGeneratedImages2((prevData) => [...prevData, ...data]);
-      setMainImageStack((prevData) => [...prevData, ...data]);
-      console.log(mainImageStack);
+      setMainImage(data[0]);
       toast.success("Image Generated Successfully");
     },
     onError: (error) => {
@@ -112,6 +117,10 @@ export const AuthProvider = ({ children }) => {
     sourceImg,
     addMutation,
     setsourceImg,
+    mainImage,
+    setMainImage,
+    selectedPrompts,
+    setSelectedPrompts,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

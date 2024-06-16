@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import Grid from "@mui/material/Grid";
 import { RotatingLines } from "react-loader-spinner";
+import useGenerate from "../../pages/tomnov-generate/generate.hooks";
 
-const RightGenerate = ({ mainImageStack, fetchMutation, handleGenerate }) => {
+const RightGenerate = () => {
+  const { fetchMutation, mainImage, handleGenerate } = useGenerate();
   return (
     <Grid item xs={12} sm={12} md={7} lg={7} xl={7}>
       <div className="tomnov-generate-right-section">
@@ -43,7 +45,7 @@ const RightGenerate = ({ mainImageStack, fetchMutation, handleGenerate }) => {
           ) : (
             <img
               className="animate-fade"
-              src={mainImageStack[0]?.uri}
+              src={mainImage?.uri}
               alt="individual-card-review"
               onContextMenu={(e) => e.preventDefault()}
             />

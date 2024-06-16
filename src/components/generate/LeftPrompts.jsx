@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-const LeftPrompts = ({
-  handlePromptSelection,
-  selectedPrompts,
-  fetchPrompts,
-}) => {
+
+import useGenerate from "../../pages/tomnov-generate/generate.hooks";
+const LeftPrompts = () => {
+  const { fetchPrompts, handlePromptSelection, selectedPrompts } =
+    useGenerate();
   return (
     <div className="flex flex-wrap gap-5 animate-fade">
       {fetchPrompts?.data?.map((prompt, i) => (
