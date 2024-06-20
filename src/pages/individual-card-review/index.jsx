@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import toast from "react-hot-toast";
-import Accept from "../../components/dropzone/index";
+import Dropzone from "../../components/dropzone/index";
 import axios from "axios";
 import { Navbar } from "../../components";
 import Grid from "@mui/material/Grid";
@@ -232,7 +232,7 @@ const IndividualCardReview = () => {
                   onChange={handleTextareaChange}
                 ></textarea>
               </div>
-              <Accept setProgress={setProgress} />
+              <Dropzone setProgress={setProgress} />
               <div className="ind-card-rev-reg-button-main">
                 <button
                   className="ind-card-rev-confirm-button"

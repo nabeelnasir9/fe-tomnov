@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../config/AuthContext";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+
 const useGenerate = () => {
   const {
     fetchMutation,
@@ -13,11 +14,13 @@ const useGenerate = () => {
     Ethnicity,
     setEthnicity,
     sourceImg,
+    setsourceImg,
     mainImage,
     setMainImage,
     selectedPrompts,
     setSelectedPrompts,
   } = useContext(AuthContext);
+
   const [input, setInput] = useState("");
   const [progress, setProgress] = useState({
     status: false,
@@ -27,16 +30,21 @@ const useGenerate = () => {
 
   /** @type [INFO: Prompt Editor] */
   const fetchImage = async () => {
+    setMainImage("");
     try {
+      console.log("Fetching Image...");
+      setProgress({
+        status: true,
+        message: "Fetching Image...",
+      });
       const response = await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/api/generate/edit`,
         {
-          imgUrl: mainImage,
+          imgUrl: mainImage?.uri,
           prompt: `${input}.The subject is a ${selectedGender} of ${ethnicityString} ethnicity.fullshot + photorealistic details + tarot card. --ar 1:2 --style raw --iw 1`,
         },
       );
       setMainImage(response.data);
-      console.log("Response", response);
     } catch (error) {
       console.log(error);
       toast.error("Error occurred. Reload and try again.");
@@ -50,6 +58,7 @@ const useGenerate = () => {
 
   /** @type [INFO: Face Swap] */
   const faceSwap = async () => {
+    setMainImage("");
     if (sourceImg === "") {
       toast.error("Please upload your selfie first.");
       return;
@@ -58,8 +67,7 @@ const useGenerate = () => {
       status: true,
       message: "Face Swap in Progress...",
     });
-    const image = mainImage;
-    console.log("Faceswap Image", image);
+    const image = mainImage?.uri;
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/api/generate/faceswap`,
@@ -69,10 +77,8 @@ const useGenerate = () => {
         },
       );
       setMainImage({ uri: response.data.uri });
-      console.log("Face swap response", response);
     } catch (error) {
-      console.log(error);
-      toast.error("Error Occurred.Reload and try again.");
+      toast.error("Error Occurred. Reload and try again.");
     } finally {
       setProgress({
         status: false,
@@ -87,7 +93,7 @@ const useGenerate = () => {
       status: true,
       message: "Generating Please Be Patient...",
     });
-    const image = mainImage;
+    const image = mainImage?.uri;
     addMutation.mutate(image);
     setProgress({
       status: false,
@@ -131,17 +137,26 @@ const useGenerate = () => {
     setEthnicity(updatedEthnicity);
   };
 
+  /** [INFO: Main Function for the first Generation.] */
   const handleGenerate = () => {
+    setMainImage("");
+    setProgress({
+      status: true,
+      message: "Generating Please Be Patient...",
+    });
     const selectedEthnicities = Ethnicity.filter((item) => item.selected).map(
       (item) => item.title,
     );
     const ethnicityString = selectedEthnicities.join(", ");
-    console.log("selectedPrompts in handleGenerate", selectedPrompts); // Log the selected prompts
 
     fetchMutation.mutate({
       ethnicity: ethnicityString,
       gender: selectedGender,
       prompts: selectedPrompts[0],
+    });
+    setProgress({
+      status: false,
+      message: "",
     });
   };
 
@@ -174,6 +189,10 @@ const useGenerate = () => {
     [setSelectedPrompts],
   );
 
+  const handleTextareaChange = (event) => {
+    setInput(event.target.value);
+  };
+
   return {
     GenderList,
     handleEthnicitySelection,
@@ -188,12 +207,15 @@ const useGenerate = () => {
     Ethnicity,
     input,
     setInput,
+    handleTextareaChange,
     progress,
     fetchImage,
     faceSwap,
     addSelectedImage,
     checkAndAddUrl,
     mainImage,
+    setProgress,
+    setsourceImg,
   };
 };
 

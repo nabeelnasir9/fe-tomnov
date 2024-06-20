@@ -1,10 +1,8 @@
 import Grid from "@mui/material/Grid";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Navbar } from "../../components";
-import { AuthContext } from "../../config/AuthContext";
 import "./index.css";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -12,8 +10,6 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 
 const OrderScreen = () => {
-  const { setUpscaleImage } = useContext(AuthContext);
-  const navigate = useNavigate();
   const [selectedImages, setSelectedImages] = useState([]);
   const email = localStorage.getItem("email");
   const images = useQuery({
@@ -63,9 +59,14 @@ const OrderScreen = () => {
   return (
     <div className="tomnov-generate-container">
       <Navbar margin={true} />
-      <Grid container spacing={10}>
+      <Grid
+        container
+        justifyItems={"center"}
+        alignItems={"center"}
+        spacing={10}
+      >
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1}></Grid>
-        <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
+        <Grid item xs={12} sm={10} md={10} lg={10} xl={10}>
           <List style={{ marginBottom: "50px" }}>
             <h1
               style={{
@@ -83,20 +84,24 @@ const OrderScreen = () => {
             <ListItem>
               <ListItemText>
                 <Typography
-                  variant="subtitle1"
+                  variant="h6"
                   component="div"
                   style={{ color: "white", fontWeight: "bolder" }}
                 >
                   CONGRATULATIONS!! on reaching the final step.
                 </Typography>
-                <Typography style={{ color: "white" }}>
-                  - Before proceeding with Print & Order. Please first click on
-                  the images you want to proceed with. We have included this for
-                  the security convenience.
+                <Typography variant="subtitle1" style={{ color: "white" }}>
+                  - Before proceeding with Print & Order. Please review all of
+                  the cards in your deck. If you would like to revisit any
+                  cards, simply select the card to return to the manifestation
+                  and customization page.
                 </Typography>
-                <Typography style={{ color: "white" }}>
-                  - After selecting the images you will see border around it. It
-                  means you are good to go and proceed with the images.
+                <Typography variant="subtitle1" style={{ color: "white" }}>
+                  - When you are satisfied, proceed to checkout to purchase your
+                  custom deck. The entire deck of 78 tarot cards will be shipped
+                  to you within 2-4 weeks. The 78 card deck will include the 22
+                  major arcana that you manifested and customized as well as 56
+                  lesser arcana that we have manifested for you in advance.
                 </Typography>
               </ListItemText>
             </ListItem>
@@ -104,22 +109,22 @@ const OrderScreen = () => {
           <Grid container spacing={4}>
             <div className="tomnov-generate-right-section">
               <div className="tomnov-generate-right-section-header">
-                <h1>Total ({images?.data?.length})</h1>
+                <h1>Total Major Arcana Cards ({images?.data?.length})</h1>
                 <div>
-                  <button
-                    className="tomnov-generate-print-button"
-                    onClick={() => {
-                      navigate("/tomnov-generate");
-                      setUpscaleImage("");
-                    }}
-                  >
-                    Regenerate
-                  </button>
+                  {/* <button */}
+                  {/*   className="tomnov-generate-print-button" */}
+                  {/*   onClick={() => { */}
+                  {/*     navigate("/tomnov-generate"); */}
+                  {/*     setUpscaleImage(""); */}
+                  {/*   }} */}
+                  {/* > */}
+                  {/*   Regenerate */}
+                  {/* </button> */}
                   <button
                     className="tomnov-generate-print-button"
                     onClick={makePayment}
                   >
-                    Print and Order
+                    Proceed to Payment
                   </button>
                 </div>
               </div>

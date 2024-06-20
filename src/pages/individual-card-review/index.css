@@ -1,8 +1,9 @@
 .ind-card-rev-textarea {
   border: 1px solid #3d3e4a;
   background-color: #192338;
-  height: 134px;
+  height: 136px;
   border-radius: 10px;
+  width: 70%;
   padding: 15px;
   margin-top: 15px;
 }

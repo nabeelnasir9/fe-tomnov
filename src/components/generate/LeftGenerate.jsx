@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 import useGenerate from "../../pages/tomnov-generate/generate.hooks";
 import LeftPrompts from "./LeftPrompts";
@@ -14,9 +15,10 @@ const LeftGenerate = () => {
     setSelectedGender,
     selectedPrompts,
   } = useGenerate();
+  const navigate = useNavigate();
 
   return (
-    <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
+    <Grid item xs={11} sm={11} md={11} lg={11} xl={11}>
       <h1 className="tomnov-generate-left-heading">Manifest your Tarot Card</h1>
       <div className="tomnov-generate-line" />
       <h4 className="tomnov-generate-left-title">Choose Gender</h4>
@@ -49,7 +51,7 @@ const LeftGenerate = () => {
       />
       <button
         className="ind-card-rev-confirm-button"
-        onClick={() => console.log("generate")}
+        onClick={() => navigate("/order")}
       >
         <div>Review</div>
       </button>

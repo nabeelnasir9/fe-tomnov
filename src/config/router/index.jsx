@@ -42,7 +42,7 @@ const RouterNavigation = () => {
         </Routes>
       </BrowserRouter>
       <Toaster
-        position="bottom-right"
+        position="top-center"
         toastOptions={{
           style: {
             background: "#7337D6",

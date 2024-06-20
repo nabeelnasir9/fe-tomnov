@@ -1,13 +1,13 @@
 import GenerateIcon from "./../../assets/generate.svg";
 import { useDropzone } from "react-dropzone";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import "./index.css";
-import { AuthContext } from "../../config/AuthContext";
 import toast from "react-hot-toast";
+import useGenerate from "../../pages/tomnov-generate/generate.hooks";
 
 // eslint-disable-next-line react/prop-types
-export default function Accept({ setProgress }) {
-  const { setsourceImg } = useContext(AuthContext);
+export default function Dropzone() {
+  const { setProgress, progress, faceSwap, setsourceImg } = useGenerate();
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
 
@@ -101,18 +101,31 @@ export default function Accept({ setProgress }) {
 
   return (
     <div className="container">
-      <div {...getRootProps({ className: "dropzone" })} onClick={open}>
-        <h4 className="tomnov-generate-left-title">Swap Images</h4>
-        <div className="tomnov-generate-upload-button">
-          <input {...getInputProps()} />
-          <img src={GenerateIcon} alt="icon" />
-          {isDragAccept && <p>Supported</p>}
-          {isDragReject && <p>That doesn&apos;t look like an image 😕</p>}
-          {!isDragActive && (
-            <div className="upload-text">
-              <p>{uploadText}</p>
-            </div>
-          )}
+      <div>
+        <h4 className="tomnov-generate-left-title">Swap Faces</h4>
+        <div className="flex items-center justify-between">
+          <div
+            {...getRootProps({ className: "dropzone" })}
+            onClick={open}
+            className="tomnov-generate-upload-button"
+          >
+            <input {...getInputProps()} />
+            <img src={GenerateIcon} alt="icon" />
+            {isDragAccept && <p>Supported</p>}
+            {isDragReject && <p>That doesn&apos;t look like an image 😕</p>}
+            {!isDragActive && (
+              <div className="upload-text">
+                <p>{uploadText}</p>
+              </div>
+            )}
+          </div>
+          <button
+            className="ind-card-rev-confirm-button"
+            disabled={progress.status}
+            onClick={() => faceSwap()}
+          >
+            <div>FaceSwap</div>
+          </button>
         </div>
         <aside className="thumb-container">{thumbs}</aside>
       </div>

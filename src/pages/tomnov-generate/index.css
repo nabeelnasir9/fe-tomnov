@@ -5,7 +5,7 @@
 .tomnov-generate-left-heading {
   color: #fff;
   font-family: "Inter";
-  font-size: 1.5rem;
+  font-size: 30px;
   font-weight: 500;
 }
 .tomnov-generate-line {
@@ -91,7 +91,7 @@
   display: inline-block;
   cursor: pointer;
   background-color: #192338;
-  width: 100%;
+  width: 70%;
   height: 179px;
   border-radius: 10px;
   display: flex;
