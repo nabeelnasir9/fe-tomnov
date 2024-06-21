@@ -103,7 +103,7 @@ export default function Dropzone() {
     <div className="container">
       <div>
         <h4 className="tomnov-generate-left-title">Swap Faces</h4>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-col gap-2 lg:flex-row">
           <div
             {...getRootProps({ className: "dropzone" })}
             onClick={open}
@@ -124,7 +124,7 @@ export default function Dropzone() {
             disabled={progress.status}
             onClick={() => faceSwap()}
           >
-            <div>FaceSwap</div>
+            <div>Face Swap</div>
           </button>
         </div>
         <aside className="thumb-container">{thumbs}</aside>

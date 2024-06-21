@@ -7,11 +7,11 @@ const PromptEditor = () => {
     useGenerate();
   return (
     <Grid item xs={12} sm={12} md={13} lg={13} xl={13}>
-      <div className="tomnov-generate-right-section">
+      <div className="tomnov-generate-right-section mt-2 pt-5">
         <h1 className="tomnov-generate-left-heading">Customization</h1>
         <div className="tomnov-generate-line" />
         <h4 className="tomnov-generate-left-title">Magic Prompt</h4>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center lg:flex-row flex-col gap-2 justify-between">
           <div className="ind-card-rev-textarea">
             <textarea
               placeholder="Prompt..."

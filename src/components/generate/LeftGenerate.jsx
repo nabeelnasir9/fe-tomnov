@@ -50,10 +50,10 @@ const LeftGenerate = () => {
         fetchPrompts={fetchPrompts}
       />
       <button
-        className="ind-card-rev-confirm-button"
+        className="ind-card-rev-confirm-button mt-4"
         onClick={() => navigate("/order")}
       >
-        <div>Review</div>
+        <div>Review Deck</div>
       </button>
     </Grid>
   );

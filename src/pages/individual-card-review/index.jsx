@@ -239,7 +239,7 @@ const IndividualCardReview = () => {
                   disabled={progress.status}
                   onClick={() => faceSwap()}
                 >
-                  <div>FaceSwap</div>
+                  <div>Face Swap</div>
                 </button>
                 <button
                   className="ind-card-rev-confirm-button"

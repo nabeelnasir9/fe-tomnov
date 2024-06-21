@@ -14,10 +14,10 @@ const TomnovGenerate = () => {
       <Grid container spacing={0}>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1}></Grid>
         <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
-          <ManifestationInstructions />
-          <CustomizationInstructions />
           <Grid container spacing={8}>
             <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
+              <ManifestationInstructions />
+              <CustomizationInstructions />
               <LeftGenerate />
             </Grid>
             <Grid

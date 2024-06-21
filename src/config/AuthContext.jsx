@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
@@ -8,10 +8,13 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [selectedGender, setSelectedGender] = useState("Male");
   const [selectedPrompts, setSelectedPrompts] = useState([]);
-  const [mainImage, setMainImage] = useState("");
-  useEffect(() => {
-    console.log(mainImage.uri);
-  }, [mainImage]);
+  const [progress, setProgress] = useState({
+    status: false,
+    message: "",
+  });
+  const [mainImage, setMainImage] = useState(
+    "https://placeholder.pics/svg/300x500/6A0D72-9549B4/FFFFFF-6F1575/Start%20magic!",
+  );
 
   const [Ethnicity, setEthnicity] = useState([
     {
@@ -35,14 +38,8 @@ export const AuthProvider = ({ children }) => {
     (item) => item.title,
   );
   const ethnicityString = selectedEthnicities.join(", ");
-  const [generatedImages2, setGeneratedImages2] = useState([]);
-  const [upscaleImage, setUpscaleImage] = useState("");
-  const [upscaleImage2, setUpscaleImage2] = useState("");
-  const [editImage, setEditImage] = useState("");
-  const [mainImageStack, setMainImageStack] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [sourceImg, setsourceImg] = useState("");
-
   const addMutation = useMutation({
     mutationKey: ["addImage"],
     mutationFn: async (image) => {
@@ -65,7 +62,6 @@ export const AuthProvider = ({ children }) => {
   const fetchMutation = useMutation({
     mutationKey: ["mainstack"],
     mutationFn: async (data) => {
-      console.log("fetchMutation", data);
       try {
         const selectedEthnicities = Ethnicity.filter(
           (item) => item.selected,
@@ -87,30 +83,22 @@ export const AuthProvider = ({ children }) => {
       }
     },
     onSuccess: (data) => {
-      setMainImage(data[0]);
+      setMainImage(data[0].uri);
+      setProgress({ status: false, message: "" });
       toast.success("Image Generated Successfully");
     },
     onError: (error) => {
       console.error("Mutation error:", error);
+      setProgress({ status: false, message: "" });
       toast.error("Error occurred while generating image");
     },
   });
   const value = {
     selectedIndex,
-    upscaleImage,
-    upscaleImage2,
     selectedGender,
     setSelectedGender,
     setSelectedIndex,
-    mainImageStack,
-    setMainImageStack,
-    editImage,
-    setEditImage,
-    setUpscaleImage,
     fetchMutation,
-    setUpscaleImage2,
-    generatedImages2,
-    setGeneratedImages2,
     Ethnicity,
     setEthnicity,
     ethnicityString,
@@ -121,6 +109,8 @@ export const AuthProvider = ({ children }) => {
     setMainImage,
     selectedPrompts,
     setSelectedPrompts,
+    progress,
+    setProgress,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

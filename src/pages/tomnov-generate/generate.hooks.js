@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../config/AuthContext";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
 
 const useGenerate = () => {
   const {
@@ -19,46 +20,45 @@ const useGenerate = () => {
     setMainImage,
     selectedPrompts,
     setSelectedPrompts,
+    progress,
+    setProgress,
   } = useContext(AuthContext);
 
   const [input, setInput] = useState("");
-  const [progress, setProgress] = useState({
-    status: false,
-    message: "",
-  });
+
   const GenderList = ["Male", "Female", "Other"];
 
   /** @type [INFO: Prompt Editor] */
-  const fetchImage = async () => {
-    setMainImage("");
-    try {
-      console.log("Fetching Image...");
-      setProgress({
-        status: true,
-        message: "Fetching Image...",
-      });
+
+  const imageFetch = useMutation({
+    mutationKey: ["fetchImage"],
+    mutationFn: async () => {
+      setMainImage("");
+      setProgress({ status: true, message: "Manifesting..." });
       const response = await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/api/generate/edit`,
         {
-          imgUrl: mainImage?.uri,
+          imgUrl: mainImage,
           prompt: `${input}.The subject is a ${selectedGender} of ${ethnicityString} ethnicity.fullshot + photorealistic details + tarot card. --ar 1:2 --style raw --iw 1`,
         },
       );
-      setMainImage(response.data);
-    } catch (error) {
-      console.log(error);
+      setMainImage(response.data.uri);
+    },
+    onSuccess: () => {
+      setProgress({ status: false, message: "" });
+    },
+    onError: () => {
+      setProgress({ status: false, message: "Error during generation" });
       toast.error("Error occurred. Reload and try again.");
-    } finally {
-      setProgress({
-        status: false,
-        message: "",
-      });
-    }
+    },
+  });
+
+  const fetchImage = async () => {
+    imageFetch.mutate();
   };
 
   /** @type [INFO: Face Swap] */
   const faceSwap = async () => {
-    setMainImage("");
     if (sourceImg === "") {
       toast.error("Please upload your selfie first.");
       return;
@@ -67,7 +67,7 @@ const useGenerate = () => {
       status: true,
       message: "Face Swap in Progress...",
     });
-    const image = mainImage?.uri;
+    const image = mainImage;
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/api/generate/faceswap`,
@@ -76,7 +76,7 @@ const useGenerate = () => {
           source: sourceImg,
         },
       );
-      setMainImage({ uri: response.data.uri });
+      setMainImage(response.data.uri);
     } catch (error) {
       toast.error("Error Occurred. Reload and try again.");
     } finally {
@@ -89,11 +89,7 @@ const useGenerate = () => {
 
   /** @type [INFO: Add to Cart] */
   const addSelectedImage = async () => {
-    setProgress({
-      status: true,
-      message: "Generating Please Be Patient...",
-    });
-    const image = mainImage?.uri;
+    const image = mainImage;
     addMutation.mutate(image);
     setProgress({
       status: false,
@@ -138,11 +134,12 @@ const useGenerate = () => {
   };
 
   /** [INFO: Main Function for the first Generation.] */
+
   const handleGenerate = () => {
     setMainImage("");
     setProgress({
       status: true,
-      message: "Generating Please Be Patient...",
+      message: "Manifesting...",
     });
     const selectedEthnicities = Ethnicity.filter((item) => item.selected).map(
       (item) => item.title,
@@ -153,10 +150,6 @@ const useGenerate = () => {
       ethnicity: ethnicityString,
       gender: selectedGender,
       prompts: selectedPrompts[0],
-    });
-    setProgress({
-      status: false,
-      message: "",
     });
   };
 
