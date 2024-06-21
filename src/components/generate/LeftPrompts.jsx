@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import useGenerate from "../../pages/tomnov-generate/generate.hooks";
 const LeftPrompts = () => {
   const { fetchPrompts, handlePromptSelection, selectedPrompts } =

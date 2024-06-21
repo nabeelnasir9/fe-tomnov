@@ -9,6 +9,7 @@ const LeftGenerate = () => {
     GenderList,
     handleEthnicitySelection,
     Ethnicity,
+    checkAndAddUrl,
     fetchPrompts,
     handlePromptSelection,
     selectedGender,
@@ -51,7 +52,10 @@ const LeftGenerate = () => {
       />
       <button
         className="ind-card-rev-confirm-button mt-4"
-        onClick={() => navigate("/order")}
+        onClick={async () => {
+          await checkAndAddUrl();
+          navigate("/order");
+        }}
       >
         <div>Review Deck</div>
       </button>
