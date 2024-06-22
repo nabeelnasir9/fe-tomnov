@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     message: "",
   });
   const [mainImage, setMainImage] = useState(
-    "https://placeholder.pics/svg/300x500/6A0D72-9549B4/FFFFFF-6F1575/Start%20magic!",
+    "https://placeholder.pics/svg/300x500/6A0D72-9549B4/FFFFFF-6F1575/Start%20Magic!",
   );
 
   const [Ethnicity, setEthnicity] = useState([

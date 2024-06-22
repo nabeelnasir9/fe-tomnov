@@ -48,7 +48,7 @@ const RightGenerate = () => {
             </div>
           ) : (
             <img
-              className="animate-fade"
+              className="animate-fade rounded-3xl"
               src={mainImage}
               alt="Generate"
               onContextMenu={(e) => e.preventDefault()}
