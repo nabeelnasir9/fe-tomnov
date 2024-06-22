@@ -169,16 +169,42 @@ button:focus {
   cursor: pointer;
   margin-left: 15px;
 }
+.checkout-button {
+  background-image: linear-gradient(to right, #7d3aeb, #9e2fb2);
+  height: 50px;
+  width: 450px;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
 @media only screen and (max-width: 768px) {
   .ind-card-rev-confirm-button {
     margin-left: 0; /* Remove left margin */
     margin-top: 10px; /* Add some space between buttons */
     font-size: 15px;
   }
+  .checkout-button {
+    width: 100%;
+  }
+  .checkout-button > div {
+    font-size: 13px;
+  }
   .ind-card-rev-reg-button {
     width: 171px;
     margin-left: 0;
     margin-top: 10px;
+    font-size: 15px;
+  }
+  .ind-card-rev-reg-button > div {
     font-size: 15px;
   }
   .ind-card-rev-reg-button-main {

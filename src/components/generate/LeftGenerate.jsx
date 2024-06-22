@@ -51,13 +51,13 @@ const LeftGenerate = () => {
         fetchPrompts={fetchPrompts}
       />
       <button
-        className="ind-card-rev-confirm-button mt-4"
+        className="checkout-button mt-4"
         onClick={async () => {
           await checkAndAddUrl();
           navigate("/order");
         }}
       >
-        <div>Review Deck</div>
+        <div>Review Deck and Proceed to Checkout {">>"}</div>
       </button>
     </Grid>
   );

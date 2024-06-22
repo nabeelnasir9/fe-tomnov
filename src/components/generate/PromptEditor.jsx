@@ -24,7 +24,7 @@ const PromptEditor = () => {
             disabled={progress.status}
             onClick={() => fetchImage()}
           >
-            <div>Generate</div>
+            <div>Apply</div>
           </button>
         </div>
         <Dropzone setProgress={setProgress} />

@@ -124,7 +124,7 @@ export default function Dropzone() {
             disabled={progress.status}
             onClick={() => faceSwap()}
           >
-            <div>Face Swap</div>
+            <div>Swap</div>
           </button>
         </div>
         <aside className="thumb-container">{thumbs}</aside>
