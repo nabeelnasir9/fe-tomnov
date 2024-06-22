@@ -2,7 +2,6 @@ import LandingPage from "./landing-page";
 import Login from "./login";
 import SignUp from "./sign-up";
 import TomnovGenerate from "./tomnov-generate";
-import IndividualCardReview from "./individual-card-review";
 import Shipping from "./shipping";
 import Payment from "./payment";
 import ContactUs from "./contact-us";
@@ -16,7 +15,6 @@ export {
   OrderScreen,
   SignUp,
   TomnovGenerate,
-  IndividualCardReview,
   Shipping,
   Payment,
   ContactUs,

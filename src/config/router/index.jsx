@@ -5,7 +5,6 @@ import {
   Login,
   SignUp,
   TomnovGenerate,
-  IndividualCardReview,
   Shipping,
   Success,
   Canceled,
@@ -29,10 +28,6 @@ const RouterNavigation = () => {
             <Route path="/cancel" element={<Canceled />} />
             <Route path="/tomnov-generate" element={<TomnovGenerate />} />
             <Route path="/order" element={<OrderScreen />} />
-            <Route
-              path="/individual-card-review"
-              element={<IndividualCardReview />}
-            />
             <Route path="/order-history" element={<OrderHistory />} />
           </Route>
           <Route path="/reset-password/:token" element={<ResetPassword />} />
