@@ -56,7 +56,7 @@ const FeaturedPrompts = () => {
     },
   ]);
   return (
-    <div className="mt-[70vh]">
+    <div className="mt-[92vh]">
       <Grid container spacing={0}>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1}></Grid>
         <Grid xs={10} sm={10} md={10} lg={10} xl={10}>
