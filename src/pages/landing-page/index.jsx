@@ -1,11 +1,4 @@
-import {
-  Navbar,
-  FeaturedPrompts,
-  Footer,
-  HowItWworks,
-  Benefits,
-  WhyChooseUs,
-} from "../../components";
+import { Navbar, Footer, HowItWworks } from "../../components";
 import "./index.css";
 import FacebookIcon from "./../../assets/facebook-2.svg";
 import img1 from "../../assets/Home/1.jpeg";
@@ -138,9 +131,9 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <FeaturedPrompts />
-      <Benefits />
-      <WhyChooseUs />
+      {/* <FeaturedPrompts /> */}
+      {/* <Benefits /> */}
+      {/* <WhyChooseUs /> */}
       <HowItWworks />
       <Footer />
     </div>
