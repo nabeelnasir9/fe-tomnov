@@ -1,4 +1,3 @@
-import React from "react";
 import Grid from "@mui/material/Grid";
 import "./index.css";
 import HowItWwrksImage1 from "./../../assets/how-it-works-1.svg";
@@ -42,12 +41,9 @@ const HowItWworks = () => {
                   </div>
                 </div>
               </div>
-              <h1 className="h-i-w-header-card-heading">
-                Explore the Prompt Library
-              </h1>
+              <h1 className="h-i-w-header-card-heading">Manifest</h1>
               <p className="h-i-w-header-card-text">
-                Browse through an extensive collection of creative and
-                functional prompts tailored to fit a myriad of use-cases.
+                Call forth your cards purpose,look and feel
               </p>
             </Grid>
             <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
@@ -58,12 +54,9 @@ const HowItWworks = () => {
                   </div>
                 </div>
               </div>
-              <h1 className="h-i-w-header-card-heading">Select And Faceswap</h1>
+              <h1 className="h-i-w-header-card-heading">Customize</h1>
               <p className="h-i-w-header-card-text">
-                Choose prompts that resonate with you or your ultimate needs.
-                Then upload your selfie picture to fit your specific tarot cards
-                artworks, and can Customize them individually to fit your
-                specific requirements.
+                Upload your face add some flair
               </p>
             </Grid>
             <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
@@ -74,13 +67,8 @@ const HowItWworks = () => {
                   </div>
                 </div>
               </div>
-              <h1 className="h-i-w-header-card-heading">Print and Order</h1>
-              <p className="h-i-w-header-card-text">
-                Experience the allure of personalized tarot card artwork with
-                ease and confidence. Purchase your bespoke creations today and
-                unlock the mysteries of your imagination with each beautifully
-                crafted card.
-              </p>
+              <h1 className="h-i-w-header-card-heading">Purchase</h1>
+              <p className="h-i-w-header-card-text">Add to cart and checkout</p>
             </Grid>
           </Grid>
         </Grid>
