@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
   const [Ethnicity, setEthnicity] = useState([
     {
       title: "Caucasians",
-      selected: false,
+      selected: true,
     },
     {
       title: "Black",
