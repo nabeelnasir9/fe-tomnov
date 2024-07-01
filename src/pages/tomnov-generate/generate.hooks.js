@@ -9,6 +9,8 @@ const useGenerate = () => {
   const {
     fetchMutation,
     addMutation,
+    fetchPrompts,
+    setFetchPrompts,
     selectedGender,
     ethnicityString,
     setSelectedGender,
@@ -153,19 +155,21 @@ const useGenerate = () => {
     });
   };
 
-  const fetchPrompts = useQuery({
+  useQuery({
     queryKey: ["prompts"],
+    refetchOnReconnect: false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     queryFn: async () => {
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/api/generate/get-prompts`,
       );
-      return response.data;
-    },
-    onSuccess: (data) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.log(error);
+      const data = response.data.map((prompt) => ({
+        ...prompt,
+        disabled: false,
+      }));
+      setFetchPrompts(data);
+      return data;
     },
   });
 
@@ -208,6 +212,7 @@ const useGenerate = () => {
     checkAndAddUrl,
     mainImage,
     setProgress,
+    setFetchPrompts,
     setsourceImg,
   };
 };

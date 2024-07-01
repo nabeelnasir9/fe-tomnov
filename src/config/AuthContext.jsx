@@ -1,12 +1,14 @@
+/* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
+
 export const AuthContext = createContext();
 
-// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
   const [selectedGender, setSelectedGender] = useState("Male");
+  const [fetchPrompts, setFetchPrompts] = useState([]);
   const [selectedPrompts, setSelectedPrompts] = useState([]);
   const [progress, setProgress] = useState({
     status: false,
@@ -34,12 +36,14 @@ export const AuthProvider = ({ children }) => {
       selected: false,
     },
   ]);
+
   const selectedEthnicities = Ethnicity.filter((item) => item.selected).map(
     (item) => item.title,
   );
   const ethnicityString = selectedEthnicities.join(", ");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [sourceImg, setsourceImg] = useState("");
+
   const addMutation = useMutation({
     mutationKey: ["addImage"],
     mutationFn: async (image) => {
@@ -68,7 +72,6 @@ export const AuthProvider = ({ children }) => {
         ).map((item) => item.title);
 
         const ethnicityString = selectedEthnicities.join(", ");
-
         const response = await axios.post(
           `${import.meta.env.VITE_SERVER_URL}/api/generate/multi`,
           {
@@ -86,6 +89,15 @@ export const AuthProvider = ({ children }) => {
       setMainImage(data[0].uri);
       setProgress({ status: false, message: "" });
       toast.success("Image Generated Successfully");
+
+      setFetchPrompts((prevPrompts) =>
+        prevPrompts.map((prompt) =>
+          selectedPrompts.some((p) => p._id === prompt._id)
+            ? { ...prompt, disabled: true }
+            : prompt,
+        ),
+      );
+      setSelectedPrompts([]);
     },
     onError: (error) => {
       console.error("Mutation error:", error);
@@ -93,6 +105,7 @@ export const AuthProvider = ({ children }) => {
       toast.error("Error occurred while generating image");
     },
   });
+
   const value = {
     selectedIndex,
     selectedGender,
@@ -111,6 +124,8 @@ export const AuthProvider = ({ children }) => {
     setSelectedPrompts,
     progress,
     setProgress,
+    fetchPrompts,
+    setFetchPrompts,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
