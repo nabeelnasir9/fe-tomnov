@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [selectedGender, setSelectedGender] = useState("Male");
   const [fetchPrompts, setFetchPrompts] = useState([]);
   const [selectedPrompts, setSelectedPrompts] = useState([]);
+  const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState({
     status: false,
     message: "",
@@ -89,7 +90,20 @@ export const AuthProvider = ({ children }) => {
       setMainImage(data[0].uri);
       setProgress({ status: false, message: "" });
       toast.success("Image Generated Successfully");
+      const usedPromptIndices =
+        JSON.parse(localStorage.getItem("usedPromptIndices")) || [];
+      usedPromptIndices.push(index);
+      localStorage.setItem(
+        "usedPromptIndices",
+        JSON.stringify(usedPromptIndices),
+      );
 
+      // Disable the selected prompt
+      // setFetchPrompts((prevPrompts) =>
+      //   prevPrompts.map((p, i) =>
+      //     i === index ? { ...p, disabled: true } : p
+      //   )
+      // );
       setFetchPrompts((prevPrompts) =>
         prevPrompts.map((prompt) =>
           selectedPrompts.some((p) => p._id === prompt._id)
@@ -126,6 +140,8 @@ export const AuthProvider = ({ children }) => {
     setProgress,
     fetchPrompts,
     setFetchPrompts,
+    index,
+    setIndex,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
