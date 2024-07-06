@@ -93,12 +93,19 @@ const useGenerate = () => {
 
   /** @type [INFO: Add to Cart] */
   const addSelectedImage = async () => {
-    const image = mainImage;
-    addMutation.mutate(image);
-    setProgress({
-      status: false,
-      message: "",
-    });
+    if (
+      mainImage ===
+      "https://placeholder.pics/svg/300x500/6A0D72-9549B4/FFFFFF-6F1575/Start%20Magic!"
+    ) {
+      toast.error("Please Manifest an Image first");
+      return;
+    } else {
+      addMutation.mutate(mainImage);
+      setProgress({
+        status: false,
+        message: "",
+      });
+    }
   };
 
   /**
@@ -111,6 +118,11 @@ const useGenerate = () => {
       const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/selected`;
       const email = localStorage.getItem("email");
       const image = mainImage;
+      if (
+        image ===
+        "https://placeholder.pics/svg/300x500/6A0D72-9549B4/FFFFFF-6F1575/Start%20Magic!"
+      )
+        return;
       const response = await axios.post(url, { email: email, image: image });
       if (response.status !== 200) {
         throw new Error("Network response was not ok");

@@ -8,6 +8,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 const OrderScreen = () => {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -22,7 +23,17 @@ const OrderScreen = () => {
     refetchOnMount: "always",
   });
 
-  /** [FIX: change to 22] */
+  const deleteImage = async (image) => {
+    const body = {
+      image,
+      email,
+    };
+    const url = `${import.meta.env.VITE_SERVER_URL}/api/auth/delete-cart`;
+    await axios.post(url, body);
+    setSelectedImages(selectedImages.filter((img) => img !== image));
+    images.refetch();
+  };
+
   const makePayment = async () => {
     if (selectedImages.length !== 22) {
       alert("22 cards are required to make a deck and place the order.");
@@ -111,15 +122,6 @@ const OrderScreen = () => {
               <div className="tomnov-generate-right-section-header">
                 <h1>Total Major Arcana Cards ({images?.data?.length})</h1>
                 <div>
-                  {/* <button */}
-                  {/*   className="tomnov-generate-print-button" */}
-                  {/*   onClick={() => { */}
-                  {/*     navigate("/tomnov-generate"); */}
-                  {/*     setUpscaleImage(""); */}
-                  {/*   }} */}
-                  {/* > */}
-                  {/*   Regenerate */}
-                  {/* </button> */}
                   <button
                     className="tomnov-generate-print-button"
                     onClick={makePayment}
@@ -143,18 +145,28 @@ const OrderScreen = () => {
                         xl={3}
                         className="animate-fade"
                       >
-                        <button
-                          className={`tomnov-generate-image-mian ${
-                            isSelected ? "selected" : ""
-                          }`}
-                          onClick={() => handleImageSelect(v)}
-                        >
-                          <img
-                            src={v}
-                            alt="icon"
-                            onContextMenu={(e) => e.preventDefault()}
-                          />
-                        </button>
+                        <div className="image-container">
+                          <button
+                            className={`tomnov-generate-image-mian ${
+                              isSelected ? "selected" : ""
+                            }`}
+                            onClick={() => handleImageSelect(v)}
+                          >
+                            <img
+                              src={v}
+                              alt="icon"
+                              onContextMenu={(e) => e.preventDefault()}
+                            />
+                          </button>
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => deleteImage(v)}
+                            style={{ marginTop: "10px" }}
+                          >
+                            Delete
+                          </Button>
+                        </div>
                       </Grid>
                     );
                   })}
