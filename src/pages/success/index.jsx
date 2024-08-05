@@ -13,7 +13,7 @@ const Success = () => {
 
   return (
     <div className="main">
-      <h1 className="heading">Payment Succeeded</h1>
+      <h1 className="text-4xl font-bold text-white">Payment Succeeded</h1>
       <p className="heading">Redirecting...</p>
       <RotatingLines
         visible={true}

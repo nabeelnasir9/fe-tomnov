@@ -168,7 +168,7 @@ const OrderHistory = () => {
                             )}
                           </TableCell>
                           <TableCell>
-                            <div className="order-history-table-status-main text-white">
+                            <div className="order-history-table-status-main text-white flex gap-2 mr-10">
                               <FaRegClock color="#fff" />
                               {row.delivery_status}
                             </div>
