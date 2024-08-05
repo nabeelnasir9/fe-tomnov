@@ -29,11 +29,11 @@ const columns = [
     label: "quantity",
     minWidth: 150,
   },
-  {
-    id: "deliveryDate",
-    label: "Delivery Status",
-    minWidth: 150,
-  },
+  // {
+  //   id: "deliveryDate",
+  //   label: "Delivery Status",
+  //   minWidth: 150,
+  // },
   {
     id: "price",
     label: "Price",
@@ -67,7 +67,7 @@ const OrderHistory = () => {
             params: {
               userEmail: email,
             },
-          }
+          },
         );
         if (response.status === 200) {
           console.log("User orders:", response.data);
@@ -84,6 +84,8 @@ const OrderHistory = () => {
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+
+  console.log(orders);
 
   return (
     <div className="tomnov-generate-container">
@@ -166,9 +168,9 @@ const OrderHistory = () => {
                             )}
                           </TableCell>
                           <TableCell>
-                            <div className="order-history-table-status-main">
+                            <div className="order-history-table-status-main text-white">
                               <FaRegClock color="#fff" />
-                              <p>Completed</p>
+                              {row.delivery_status}
                             </div>
                           </TableCell>
                           <TableCell>
@@ -178,19 +180,19 @@ const OrderHistory = () => {
                                   {row.lineItems.reduce(
                                     (total, item) =>
                                       total + parseInt(item.quantity),
-                                    0
+                                    0,
                                   )}
                                 </p>
                               </div>
                             )}
                           </TableCell>
-                          <TableCell>
-                            <div className="order-history-table-date-main">
-                              <p className="order-history-table-date-text">
-                                {row.delivery_status}
-                              </p>
-                            </div>
-                          </TableCell>
+                          {/* <TableCell> */}
+                          {/*   <div className="order-history-table-date-main"> */}
+                          {/*     <p className="order-history-table-date-text"> */}
+                          {/*       {row.delivery_status} */}
+                          {/*     </p> */}
+                          {/*   </div> */}
+                          {/* </TableCell> */}
                           <TableCell>
                             {row.lineItems.length > 0 && (
                               <div>
@@ -200,7 +202,7 @@ const OrderHistory = () => {
                                     row.lineItems.reduce(
                                       (total, item) =>
                                         total + item.price_data.unit_amount,
-                                      0
+                                      0,
                                     ) / 100
                                   ).toFixed(2)}
                                 </p>

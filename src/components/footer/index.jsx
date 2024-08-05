@@ -1,4 +1,3 @@
-import React from "react";
 import "./index.css";
 import Grid from "@mui/material/Grid";
 import Twitter from "./../../assets/footer-twitter.svg";

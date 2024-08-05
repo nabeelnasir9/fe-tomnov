@@ -98,12 +98,6 @@ export const AuthProvider = ({ children }) => {
         JSON.stringify(usedPromptIndices),
       );
 
-      // Disable the selected prompt
-      // setFetchPrompts((prevPrompts) =>
-      //   prevPrompts.map((p, i) =>
-      //     i === index ? { ...p, disabled: true } : p
-      //   )
-      // );
       setFetchPrompts((prevPrompts) =>
         prevPrompts.map((prompt) =>
           selectedPrompts.some((p) => p._id === prompt._id)
