@@ -168,7 +168,30 @@ const useGenerate = () => {
       prompts: selectedPrompts[0],
     });
   };
-
+  const majorArcanaOrder = [
+    "The Fool",
+    "The Magician",
+    "The High Priestess",
+    "The Empress",
+    "The Emperor",
+    "The Hierophant",
+    "The Lovers",
+    "The Chariot",
+    "Strength",
+    "The Hermit",
+    "Wheel of Fortune",
+    "Justice",
+    "The Hanged Man",
+    "Death",
+    "Temperance",
+    "The Devil",
+    "The Tower",
+    "The Star",
+    "The Moon",
+    "The Sun",
+    "Judgement",
+    "The World",
+  ];
   useQuery({
     queryKey: ["prompts"],
     queryFn: async () => {
@@ -182,12 +205,20 @@ const useGenerate = () => {
 
       const usedPromptIndices =
         JSON.parse(localStorage.getItem("usedPromptIndices")) || [];
-      const updatedData = data.map((prompt, i) =>
+      let updatedData = data.map((prompt, i) =>
         usedPromptIndices.includes(i) ? { ...prompt, disabled: true } : prompt,
       );
+      updatedData = updatedData.sort((a, b) => {
+        const aIndex = majorArcanaOrder.indexOf(a.text);
+        const bIndex = majorArcanaOrder.indexOf(b.text);
+        return aIndex - bIndex;
+      });
+
       setFetchPrompts(updatedData);
       return updatedData;
     },
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   const handlePromptSelection = useCallback(
