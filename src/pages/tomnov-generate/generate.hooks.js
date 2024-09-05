@@ -198,17 +198,9 @@ const useGenerate = () => {
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URL}/api/generate/get-prompts`,
       );
-      const data = response.data.map((prompt) => ({
-        ...prompt,
-        disabled: false,
-      }));
+      const data = response.data;
 
-      const usedPromptIndices =
-        JSON.parse(localStorage.getItem("usedPromptIndices")) || [];
-      let updatedData = data.map((prompt, i) =>
-        usedPromptIndices.includes(i) ? { ...prompt, disabled: true } : prompt,
-      );
-      updatedData = updatedData.sort((a, b) => {
+      const updatedData = data.sort((a, b) => {
         const aIndex = majorArcanaOrder.indexOf(a.text);
         const bIndex = majorArcanaOrder.indexOf(b.text);
         return aIndex - bIndex;

@@ -28,7 +28,6 @@ export default function Dropzone() {
     onDrop: (acceptedFiles, fileRejections) => {
       if (fileRejections.length > 0) {
         toast.error("Unsupported file type");
-        console.log("Rejected files:", fileRejections);
       } else {
         setFiles(
           acceptedFiles.map((file) =>

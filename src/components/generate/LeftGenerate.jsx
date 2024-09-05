@@ -10,11 +10,8 @@ const LeftGenerate = () => {
     handleEthnicitySelection,
     Ethnicity,
     checkAndAddUrl,
-    fetchPrompts,
-    handlePromptSelection,
     selectedGender,
     setSelectedGender,
-    selectedPrompts,
   } = useGenerate();
   const navigate = useNavigate();
 
@@ -45,11 +42,7 @@ const LeftGenerate = () => {
         ))}
       </div>
       <h1 className="tomnov-generate-left-title mb-5">Major Arcana</h1>
-      <LeftPrompts
-        handlePromptSelection={handlePromptSelection}
-        selectedPrompts={selectedPrompts}
-        fetchPrompts={fetchPrompts}
-      />
+      <LeftPrompts />
       <button
         className="checkout-button mt-4"
         onClick={async () => {

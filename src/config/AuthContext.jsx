@@ -90,22 +90,6 @@ export const AuthProvider = ({ children }) => {
       setMainImage(data[0].uri);
       setProgress({ status: false, message: "" });
       toast.success("Image Generated Successfully");
-      const usedPromptIndices =
-        JSON.parse(localStorage.getItem("usedPromptIndices")) || [];
-      usedPromptIndices.push(index);
-      localStorage.setItem(
-        "usedPromptIndices",
-        JSON.stringify(usedPromptIndices),
-      );
-
-      setFetchPrompts((prevPrompts) =>
-        prevPrompts.map((prompt) =>
-          selectedPrompts.some((p) => p._id === prompt._id)
-            ? { ...prompt, disabled: true }
-            : prompt,
-        ),
-      );
-      setSelectedPrompts([]);
     },
     onError: (error) => {
       console.error("Mutation error:", error);
