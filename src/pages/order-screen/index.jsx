@@ -1,6 +1,9 @@
 import Grid from "@mui/material/Grid";
+import { InputAdornment } from "@mui/material";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { Input } from "@mui/material";
+import { RiCoupon2Fill } from "react-icons/ri";
 import { useState } from "react";
 import { Navbar } from "../../components";
 import "./index.css";
@@ -12,6 +15,7 @@ import Button from "@mui/material/Button";
 
 const OrderScreen = () => {
   const [selectedImages, setSelectedImages] = useState([]);
+  const [coupon, setCoupon] = useState("");
   const email = localStorage.getItem("email");
   const images = useQuery({
     queryKey: ["images"],
@@ -35,13 +39,14 @@ const OrderScreen = () => {
   };
 
   const makePayment = async () => {
-    if (selectedImages.length !== 22) {
+    if (selectedImages.length !== 1) {
       alert("22 cards are required to make a deck and place the order.");
       return;
     }
     const body = {
       images: selectedImages,
       userEmail: email,
+      coupon_code: coupon,
     };
     const headers = {
       "Content-Type": "application/json",
@@ -117,6 +122,27 @@ const OrderScreen = () => {
               </ListItemText>
             </ListItem>
           </List>
+
+          <Input
+            className="w-full rounded-md border-2 border-gray-500 focus:border-gray-200 focus:ring-0 p-2 mb-10"
+            placeholder="Enter Coupon Code"
+            onChange={(e) => setCoupon(e.target.value)}
+            startAdornment={
+              <InputAdornment position="start">
+                <RiCoupon2Fill className="text-gray-500 h-5 w-5 mr-2" />
+              </InputAdornment>
+            }
+            inputProps={{
+              style: { color: "white" }, // Ensures the text is white
+              placeholder: "Enter Coupon Code", // Placeholder value
+            }}
+            sx={{
+              "& .MuiInputBase-input::placeholder": {
+                color: "white",
+              },
+            }}
+          />
+
           <Grid container spacing={4}>
             <div className="tomnov-generate-right-section">
               <div className="tomnov-generate-right-section-header">
