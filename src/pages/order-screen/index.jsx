@@ -39,7 +39,7 @@ const OrderScreen = () => {
   };
 
   const makePayment = async () => {
-    if (selectedImages.length !== 1) {
+    if (selectedImages.length !== 22) {
       alert("22 cards are required to make a deck and place the order.");
       return;
     }
